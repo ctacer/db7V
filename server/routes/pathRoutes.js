@@ -5,6 +5,10 @@ module.exports.getStatus = function (req, res) {
     res.send ( serverStatus );
 };
 
-module.exports.getHomePage = function (req, res) {
+/**
+ * routes from config file
+ */
+
+module.exports.homePage = function (req, res) {
     res.sendfile ( registry.get ("rootDirname") + "/views/index.html" );
 };

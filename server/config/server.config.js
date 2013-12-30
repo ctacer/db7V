@@ -6,13 +6,22 @@ var config = {
             "host" : "http://localhost",
             "port" : 3000
         },
-        "mainRouteComponent" : ""
+        "dbConnection" : {
+            "host" : 'localhost',
+            "port" : 3306,
+            "user" : 'web',
+            "pass" : 'qwerty',
+            "dbName" : 'university'
+        },
+        "mainRouteComponent" : "",
+        "routes" : {
+            "requests" : {},
+            "paths" : {
+                "homePage" : "/index"
+            }
+        }
     },
     "development" : {
-        "mainRouteComponent" : "/dev"
-    },
-    "testing" : {
-        "mainRouteComponent" : "/test"
     }
 };
 /**
