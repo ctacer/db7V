@@ -1,6 +1,0 @@
-
-
-var registry = ( function () {
-
-
-} ) ();

@@ -1,0 +1,22 @@
+.collapsable-element {
+    position: relative;
+    box-sizing: border-box;
+    margin-left: 5px;
+}
+.collapsable-child {
+    position: relative;
+    left: 3%;
+    width: 97%;
+}
+.collapsable-content {
+    box-sizing: border-box;
+    padding: 0px 4px;
+    border-bottom: 1px solid #fff;
+}
+.collapsable-content:hover {
+    cursor: pointer;
+    border-bottom-color: #000;
+}
+.selected-text {
+    background-color: rgba(0,0,0,0.4);
+}

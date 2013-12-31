@@ -6,11 +6,23 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388417267071" ignored="false" />
     <file path="/.gitignore" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388418062241" ignored="false" />
-    <file path="/app.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388421623049" ignored="false" />
-    <file path="/route_init.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388421878295" ignored="false" />
-    <file path="/server.config.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388421910207" ignored="false" />
-    <file path="/requestRoutes.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388421809376" ignored="false" />
-    <file path="/universiity.db.config.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388421544556" ignored="false" />
+    <file path="/app.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388446775026" ignored="false" />
+    <file path="/route_init.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388446471679" ignored="false" />
+    <file path="/server.config.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388446636609" ignored="false" />
+    <file path="/requestRoutes.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388445243475" ignored="false" />
+    <file path="/universiity.db.config.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388428538648" ignored="false" />
+    <file path="/index.html" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388438303020" ignored="false" />
+    <file path="/index.css" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388441529008" ignored="false" />
+    <file path="/treeview.css" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388433195885" ignored="false" />
+    <file path="/index.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388433392240" ignored="false" />
+    <file path="/tree_view_controller.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388446402993" ignored="false" />
+    <file path="/core.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388434504618" ignored="false" />
+    <file path="/config.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388446201032" ignored="false" />
+    <file path="/core_controller.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388438450022" ignored="false" />
+    <file path="/a.dummy" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388446686545" ignored="false" />
+    <file path="/pathRoutes.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388445188552" ignored="false" />
+    <file path="/db_functions.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388446712555" ignored="false" />
+    <file path="/db_gateway.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388447586422" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,70 +45,16 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="212" selection-end="236" vertical-scroll-proportion="0.0">
+            <state line="10" column="24" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="route_init.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/route_init.js">
+      <file leaf-file-name="package.json" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="59" selection-start="93" selection-end="98" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.config.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/config/server.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="37" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_2.sql" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/db_2.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="12" selection-start="0" selection-end="15007" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="generate_schema_script_db_2.0.sql" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/db/generate_schema_script_db_2.0.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="707" column="78" selection-start="18603" selection-end="18603" vertical-scroll-proportion="1.27">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pathRoutes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/pathRoutes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requestRoutes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/requestRoutes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="21" selection-start="17" selection-end="23" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="universiity.db.config.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/config/universiity.db.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="4" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
+            <state line="10" column="35" selection-start="213" selection-end="213" vertical-scroll-proportion="0.4864865">
               <folding />
             </state>
           </provider>
@@ -105,7 +63,7 @@
       <file leaf-file-name="db_gateway.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/db/db_gateway.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="44" selection-start="5136" selection-end="5145" vertical-scroll-proportion="0.0">
+            <state line="6" column="44" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -121,6 +79,7 @@
   <component name="Git.Settings">
     <option name="SYNC_SETTING" value="DONT" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="WARN_ABOUT_CRLF" value="false" />
   </component>
   <component name="GitLogSettings">
     <option name="myDateState">
@@ -130,16 +89,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/server/db/db_functions.js" />
-        <option value="$PROJECT_DIR$/server/routes/mainRoute.js" />
-        <option value="$PROJECT_DIR$/server/config/universiity.db.config.js" />
-        <option value="$PROJECT_DIR$/server/app.js" />
+        <option value="$PROJECT_DIR$/server/public/css/treeview.css" />
+        <option value="$PROJECT_DIR$/server/public/js/scripts/core.js" />
+        <option value="$PROJECT_DIR$/server/views/index.html" />
+        <option value="$PROJECT_DIR$/server/public/js/scripts/core_controller.js" />
+        <option value="$PROJECT_DIR$/server/public/css/index.css" />
+        <option value="$PROJECT_DIR$/db/insert_scripts/insert_classes.sql" />
+        <option value="$PROJECT_DIR$/server/routes/pathRoutes.js" />
         <option value="$PROJECT_DIR$/server/routes/requestRoutes.js" />
+        <option value="$PROJECT_DIR$/server/public/config/config.js" />
+        <option value="$PROJECT_DIR$/server/public/js/scripts/tree_view_controller.js" />
         <option value="$PROJECT_DIR$/server/routes/route_init.js" />
         <option value="$PROJECT_DIR$/server/config/server.config.js" />
-        <option value="$PROJECT_DIR$/db/db_2.sql" />
-        <option value="$PROJECT_DIR$/db/generate_schema_script_db_2.0.sql" />
+        <option value="$PROJECT_DIR$/server/db/db_functions.js" />
+        <option value="$PROJECT_DIR$/server/db/db_gateway.js" />
+        <option value="$PROJECT_DIR$/server/app.js" />
+        <option value="$PROJECT_DIR$/server/package.json" />
       </list>
     </option>
   </component>
@@ -275,6 +240,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db7V" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db7V" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="insert_scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -283,12 +266,18 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="settings.github" />
     <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="options.lastSelected" value="settings.github" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="options.searchVisible" value="true" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\stym\Documents\GitHub\db7V\server\views\forms" />
+    </key>
   </component>
   <component name="RunManager" selected="Node.js.app">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -341,22 +330,22 @@
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20921156" sideWeight="0.6709265" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.225605" sideWeight="0.67197454" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -420,100 +409,116 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/server/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="49" selection-start="179" selection-end="179" vertical-scroll-proportion="0.36548224">
+        <state line="38" column="43" selection-start="1568" selection-end="1579" vertical-scroll-proportion="0.8420139">
+          <folding>
+            <element signature="tag#div#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/public/js/scripts/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="50" selection-start="105" selection-end="105" vertical-scroll-proportion="0.11960133">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/package.json">
+    <entry file="file://$PROJECT_DIR$/server/public/css/treeview.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="21" selection-start="248" selection-end="248" vertical-scroll-proportion="0.358804">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/public/css/forms.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/db/db_functions.js">
+    <entry file="file://$PROJECT_DIR$/server/public/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="8" selection-start="607" selection-end="607" vertical-scroll-proportion="0.67808217">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/db/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="80" column="22" selection-start="1257" selection-end="1257" vertical-scroll-proportion="0.9401993">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/pathRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="212" selection-end="236" vertical-scroll-proportion="0.0">
+        <state line="11" column="47" selection-start="397" selection-end="397" vertical-scroll-proportion="0.32890365">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/config/universiity.db.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="4" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/db/db_gateway.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="44" selection-start="5136" selection-end="5145" vertical-scroll-proportion="0.0">
+        <state line="11" column="16" selection-start="301" selection-end="308" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/requestRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="21" selection-start="17" selection-end="23" vertical-scroll-proportion="0.0">
+        <state line="16" column="31" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/public/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="25" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/public/js/scripts/tree_view_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="50" selection-start="661" selection-end="661" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/route_init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="59" selection-start="93" selection-end="98" vertical-scroll-proportion="0.0">
+        <state line="14" column="37" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db/db_functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="7" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/config/server.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="37" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
+        <state line="14" column="12" selection-start="331" selection-end="331" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/db_2.sql">
+    <entry file="file://$PROJECT_DIR$/server/db/db_gateway.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="12" selection-start="0" selection-end="15007" vertical-scroll-proportion="0.0">
+        <state line="6" column="44" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/create_db_script.sql">
+    <entry file="file://$PROJECT_DIR$/server/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="11" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0">
+        <state line="10" column="24" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/generate_schema_script_db_2.0.sql">
+    <entry file="file://$PROJECT_DIR$/server/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="707" column="78" selection-start="18603" selection-end="18603" vertical-scroll-proportion="1.27">
+        <state line="10" column="35" selection-start="213" selection-end="213" vertical-scroll-proportion="0.4864865">
           <folding />
         </state>
       </provider>

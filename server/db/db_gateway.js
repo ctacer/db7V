@@ -3,13 +3,14 @@
  * @returns {{connect: Function, disconnect: Function, insert: Function, remove: Function, select: Function}}
  */
 module.exports = function(){
-    var MySQLPool = require("mysql-pool").MySQLPool;
+    var config = (registry.get ("config"));
+    var MySQLPool = registry.get ("mysqlPool").MySQLPool;
     var client = new MySQLPool({
-        poolSize: SC.config.db.poolSize,
-        user:     SC.config.db.user,
-        password: SC.config.db.password,
-        database: SC.config.db.dbName,
-        host: "localhost",
+        poolSize: config.db.poolSize,
+        user:     config.db.user,
+        password: config.db.password,
+        database: config.db.dbName,
+        host: config.db.host,
         supportBigNumbers : true
     });
 

@@ -6,16 +6,20 @@ var config = {
             "host" : "http://localhost",
             "port" : 3000
         },
-        "dbConnection" : {
+        "db" : {
             "host" : 'localhost',
             "port" : 3306,
             "user" : 'web',
-            "pass" : 'qwerty',
-            "dbName" : 'university'
+            "password" : 'qwerty',
+            "dbName" : 'university2.0.',
+            "poolSize" : 4
         },
         "mainRouteComponent" : "",
         "routes" : {
-            "requests" : {},
+            "requests" : {
+                "selectObjects" : "/get/objects",
+                "selectClasses" : "/get/classes"
+            },
             "paths" : {
                 "homePage" : "/index"
             }

@@ -8,9 +8,11 @@ registry.set ("config", require ( __dirname + "/config/server.config.js") ( app.
 registry.set ("dbConfig", require (__dirname + "/config/universiity.db.config.js"));
 registry.set ("rootDirname", __dirname );
 registry.set ("http", require ("http") );
+registry.set ("mysqlPool", require ("mysql-pool") );
 registry.set ("mainRoute", require (__dirname + "/routes/pathRoutes.js") );
+registry.set ("requestRoute", require (__dirname + "/routes/requestRoutes.js") );
 
-registry.set ("dbGateway", require (__dirname + "/db/db_gateway.js"));
+registry.set ("dbGateway", require (__dirname + "/db/db_gateway.js") ( registry.get ("config") ) );
 
 app.set ('port', registry.get ("config" ).server.port );
 app.set ('views', __dirname + '/views');
