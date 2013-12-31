@@ -9,6 +9,9 @@
 
     <script src="/js/libs/jquery-2.0.3.min.js"></script>
     <script src="/js/libs/bootstrap.min.js"></script>
+    <script src="/js/libs/helper.js"></script>
+    <script src="/js/scripts/db_manager.js"></script>
+    <script src="/js/scripts/template_builder.js"></script>
     <script src="/js/scripts/core_controller.js"></script>
     <script src="/js/scripts/tree_view_controller.js"></script>
     <script src="/config/config.js"></script>
@@ -23,21 +26,12 @@
     </div>
     <div id="body">
         <div id="body-content">
-            <div id="tree-view-container" class="container-element">
-                <div class="collapsable-element">
-                    <span class="collapsable-content">Львівський національний університет імені Івана Франка</span>
-                    <div class="collapsable-child">
-                        <div class="collapsable-element">
-                            <span class="collapsable-content">BBB</span>
-                            <div class="collapsable-child"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="tree-view-container" class="container-element"></div>
             <div id="db-managment-container" class="container-element">
                 <div class="db-managment-header">
                     <select id="record-type"></select>
                 </div>
+                <div class="db-managment-body"></div>
             </div>
         </div>
     </div>

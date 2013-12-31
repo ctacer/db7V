@@ -44,6 +44,7 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
+            dbManager.openInsertFrom (treeViewController.getObjects ({'id' : $ (selectedTreeNode[0] ).attr ("data-id") }))
         };
         $ ("#" + config.css.addEntityBtn ).click (addEntityBtnClicked);
     };

@@ -18,11 +18,15 @@ var config = {
         "routes" : {
             "requests" : {
                 "selectObjects" : "/get/objects",
-                "selectClasses" : "/get/classes"
+                "selectClasses" : "/get/classes",
+                "getTemplate" : "/get/template"
             },
             "paths" : {
                 "homePage" : "/index"
             }
+        },
+        "templates" : {
+            "tree_view" : "/views/templates/tree_view_template.html"
         }
     },
     "development" : {

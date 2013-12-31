@@ -4,12 +4,15 @@ var config = {
     "css" : {
         "selectedText" : "selected-text",
         "collapsableContent" : "collapsable-content",
+        "collapsableElement" : "collapsable-element",
         "rightContainer" : "db-managment-container",
         "leftContainer" : "tree-view-container",
         "visible" : "visible",
         "bodyElement" : "body",
         "homeBtn" : "home-btn",
-        "addEntityBtn" : "add-entry-btn"
+        "addEntityBtn" : "add-entry-btn",
+        "treeViewContainer" : "tree-view-container",
+        "recordType" : "record-type"
     },
     "margins" : {
         "header" : 40,
@@ -21,7 +24,24 @@ var config = {
         "port" : ":3000",
         "routes" : {
             "getObjects" : "/get/objects",
-            "getClasses" : "/get/classes"
+            "getClasses" : "/get/classes",
+            "getTemplate" : "/get/template"
+        },
+        "templates" : {
+            "treeView" : "?type=tree_view"
+        }
+    },
+    "serverData" : {
+        "classes" : {
+            "id" : "ID",
+            "name" : "Name",
+            "children" : "Children"
+        },
+        "uObjects" : {
+            "class" : "class",
+            "id" : "id",
+            "major" : "major",
+            "name" : "name"
         }
     }
 };
