@@ -170,6 +170,9 @@ module.exports = {
             "major" : "Number",
             "name" : "String",
             "class" : "Number"
+        },
+        "student2" : {
+            "country" : "String"
         }
     },
     "references" : {
@@ -382,6 +385,12 @@ module.exports = {
         "personstudents" : {
             "id" : {
                 "table" : "personstuding",
+                "reference" : "id"
+            }
+        },
+        "student2" : {
+            "id" : {
+                "table" : "personstudents",
                 "reference" : "id"
             }
         },

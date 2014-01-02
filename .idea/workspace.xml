@@ -25,10 +25,10 @@
     <file path="/db_gateway.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388667763520" ignored="false" />
     <file path="/templateBuilder.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388488283217" ignored="false" />
     <file path="/jsHelper.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388492103347" ignored="false" />
-    <file path="/template_builder.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388664800580" ignored="false" />
+    <file path="/template_builder.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388670863323" ignored="false" />
     <file path="/db_manager.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388665945280" ignored="false" />
     <file path="/helper.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388656860345" ignored="false" />
-    <file path="/university_proto.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388667652536" ignored="false" />
+    <file path="/university_proto.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388671813842" ignored="false" />
     <file path="/forms.css" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388663377488" ignored="false" />
     <file path="/a.js" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388601942659" ignored="false" />
     <file path="/generate_schema_script_db_2.0.sql" changelist="0030ad8e-a2f3-4767-8568-ef7a7da36ff5" time="1388607294486" ignored="false" />
@@ -65,43 +65,16 @@
       <file leaf-file-name="db_manager.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/public/js/scripts/db_manager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="248" column="70" selection-start="10396" selection-end="10405" vertical-scroll-proportion="0.0">
+            <state line="195" column="36" selection-start="8225" selection-end="8225" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requestRoutes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/requestRoutes.js">
+      <file leaf-file-name="template_builder.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/public/js/scripts/template_builder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="43" selection-start="3911" selection-end="3911" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="university_proto.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/db/university_proto.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="478" column="17" selection-start="11908" selection-end="11908" vertical-scroll-proportion="0.77272725">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_gateway.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/db/db_gateway.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="279" column="8" selection-start="9643" selection-end="9643" vertical-scroll-proportion="0.0">
+            <state line="143" column="63" selection-start="6110" selection-end="6110" vertical-scroll-proportion="0.60780984">
               <folding />
             </state>
           </provider>
@@ -138,10 +111,10 @@
         <option value="$PROJECT_DIR$/server/public/js/scripts/core_controller.js" />
         <option value="$PROJECT_DIR$/server/public/config/config.js" />
         <option value="$PROJECT_DIR$/server/config/server.config.js" />
-        <option value="$PROJECT_DIR$/server/public/js/scripts/template_builder.js" />
         <option value="$PROJECT_DIR$/server/public/js/scripts/db_manager.js" />
         <option value="$PROJECT_DIR$/server/db/db_gateway.js" />
         <option value="$PROJECT_DIR$/server/routes/requestRoutes.js" />
+        <option value="$PROJECT_DIR$/server/public/js/scripts/template_builder.js" />
         <option value="$PROJECT_DIR$/server/db/university_proto.js" />
       </list>
     </option>
@@ -470,7 +443,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -480,7 +453,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39968154" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3280255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -595,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/public/js/scripts/template_builder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="7" selection-start="4583" selection-end="4583" vertical-scroll-proportion="0.61290324">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/config/server.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="70" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
@@ -623,23 +589,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/public/js/scripts/db_manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="248" column="70" selection-start="10396" selection-end="10405" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/insert_scripts/000001_insert_classes.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="57" selection-start="3991" selection-end="3991" vertical-scroll-proportion="0.79796267">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -651,16 +603,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/requestRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="43" selection-start="3911" selection-end="3911" vertical-scroll-proportion="0.0">
+        <state line="123" column="43" selection-start="3911" selection-end="3911" vertical-scroll-proportion="0.34219268">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/public/js/scripts/db_manager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="195" column="36" selection-start="8225" selection-end="8225" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/db/university_proto.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="478" column="17" selection-start="11908" selection-end="11908" vertical-scroll-proportion="0.77272725">
+        <state line="394" column="17" selection-start="9675" selection-end="9675" vertical-scroll-proportion="0.820598">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/public/js/scripts/template_builder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="63" selection-start="6110" selection-end="6110" vertical-scroll-proportion="0.60780984">
           <folding />
         </state>
       </provider>

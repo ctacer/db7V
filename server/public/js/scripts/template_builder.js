@@ -141,7 +141,7 @@ var templateBuilder = (function () {
                 }
 
                 browseBtn = '';
-                if (config.serverData.fieldReferences.hasOwnProperty (tables[i].name) && key == config.serverData.fieldReferences[tables[i].name]) {
+                if ( (!appendOptions || !appendOptions.justShow) && config.serverData.fieldReferences.hasOwnProperty (tables[i].name) && key == config.serverData.fieldReferences[tables[i].name]) {
                     browseBtn = "<div class=\"" + config.css.dbManagmentFieldBrowseBtn + " " + config.css.floatLeft + "\">...</div>";
                 }
                 label = config.translation[key];
