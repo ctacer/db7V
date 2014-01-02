@@ -24,9 +24,37 @@ var templateBuilder = (function () {
     };
 
     var sortObjects = function (objectsToSort) {
-        var mappings = config.serverData.uObjects;
+        //var mappings = config.serverData.uObjects;
+        /*var ret = [];
+        var currentMin = objectsToSort[0].major, deviation = 1000;
+
+        for (var i = 0; i < objectsToSort.length; i ++) {
+            for (var j = 0; j < objectsToSort.length; j ++) {
+                for (var k = 0; k < objectsToSort.length; k ++) {
+                    if (objectsToSort[k].major < currentMin ) {
+                        currentMin = objectsToSort[k].major;
+                    }
+                }
+                if ( objectsToSort[j].major == currentMin ) {
+                    ret.push (objectsToSort[j]);
+                }
+            }
+        }
+        return ret;*/
+
         objectsToSort.sort (function (object, next) {
-            return object[mappings.major] > next[mappings.major];
+            //console.log (mappings.major, object[mappings.major], next[mappings.major]);
+            //if (object[mappings.major] == 0) return true;
+            console.log (object.major,next.major, object.major > next.major);
+            if ( parseInt (object.major) > parseInt (next.major) ) {
+                return 1;
+            }
+            else if (parseInt (object.major) < parseInt (next.major) ) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
         });
     };
 
@@ -68,31 +96,41 @@ var templateBuilder = (function () {
         var footer = $ ('.' + config.css.dbManagmentFooter);
         footer.removeClass (config.css.hidden);
         footer.find ("." + config.css.dbManagmentBtn ).addClass (config.css.hidden);
-        footer.find ("#" + elementToShow ).removeClass (config.css.hidden);
+        if ( elementToShow ) {
+            footer.find ("#" + elementToShow ).removeClass (config.css.hidden);
+        }
         footer.find ("#" + config.css.dbManagmentCancelBtn ).removeClass (config.css.hidden);
     };
 
     var buildEditForm = function (tables, classObject, object) {
-        appendObjectTemplates (tables, classObject, object, true);
+        appendObjectTemplates (tables, classObject, object, {toFill : true});
         builFormFooter (config.css.dbManagmentEditBtn);
     };
 
-    var appendObjectTemplates = function ( tables, classObject, object, toFill) {
+    var buildInfoForm = function (tables, classObject, object) {
+        appendObjectTemplates (tables, classObject, object, {toFill: true, justShow: true});
+        builFormFooter ();
+    };
+
+    var appendObjectTemplates = function ( tables, classObject, object, appendOptions) {
         var appendy = $ ('.' + config.css.dbManagmentBody);
         appendy.empty ();
 
-        var field, browseBtn, editableField, valueToFill = '';
+        var field, browseBtn, editableField, label, valueToFill = '';
         var major = object.name;
-        if (toFill) {
-            major = treeViewController.getObjects ({ id : object.major })[0];
+        var additionalAttributes = "contenteditable=\"true\"";
+
+        if (appendOptions && appendOptions.toFill) {
+            major = treeViewController.getObjectsById (object.major)[0];
             if (major) major = major.name;
             else major = object.name;
         }
         for (var i = tables.length - 1; i >= 0; i --) {
             for (var key in tables[i].fields ) {
-                if ( toFill ) valueToFill = tables[i].fields[key];
+                if ( appendOptions && appendOptions.toFill ) valueToFill = tables[i].fields[key];
+                if ( appendOptions && appendOptions.justShow ) additionalAttributes = '';
 
-                editableField = "<div data-field=\"" + key + "\" contenteditable=\"true\" class=\"" + config.css.fieldElement + " " + config.css.floatLeft + "\">" + valueToFill + "</div>";
+                editableField = "<div data-field=\"" + key + "\" " + additionalAttributes + " class=\"" + config.css.fieldElement + " " + config.css.floatLeft + "\">" + valueToFill + "</div>";
 
                 if ( !tables[i].fields.hasOwnProperty (key) || key == "id" ) continue;
                 if (tables[i].name == "uobject" && key == 'class' ) {
@@ -106,10 +144,12 @@ var templateBuilder = (function () {
                 if (config.serverData.fieldReferences.hasOwnProperty (tables[i].name) && key == config.serverData.fieldReferences[tables[i].name]) {
                     browseBtn = "<div class=\"" + config.css.dbManagmentFieldBrowseBtn + " " + config.css.floatLeft + "\">...</div>";
                 }
+                label = config.translation[key];
+                if ( !label ) label = key;
 
                 field =
                     "<div class=\"" + config.css.fieldContainer + "\" data-table=\"" + tables[i].name + "\">" +
-                        "<div class=\"" + config.css.fieldLabel + " " + config.css.floatLeft + "\">" + key + "</div>" +
+                        "<div class=\"" + config.css.fieldLabel + " " + config.css.floatLeft + "\">" + label + "</div>" +
                         editableField +
                         browseBtn +
                         "<div class=\"" + config.css.floatClear + "\"></div>" +
@@ -120,7 +160,7 @@ var templateBuilder = (function () {
     };
 
     var buildInsertForm = function (data, classObject, object) {
-        appendObjectTemplates (data.tables, classObject, object, false);
+        appendObjectTemplates (data.tables, classObject, object);
         builFormFooter (config.css.dbManagmentInsertBtn);
     };
 
@@ -150,6 +190,7 @@ var templateBuilder = (function () {
         "buildInsertClasses" : buildInsertClasses,
         "buildInsertForm" : buildInsertForm,
         "buildEditForm" : buildEditForm,
+        "buildInfoForm" : buildInfoForm,
         "buildDeleteForm" : buildDeleteForm
     };
 

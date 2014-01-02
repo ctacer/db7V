@@ -277,6 +277,23 @@ module.exports = function(){
             callback ();
         },
 
+        'deleteProcesses' : function (queries, cb) {
+            cb = cb || function () {};
+            var currentArrayIndex = 0;
+
+            var callback = function () {
+                if (currentArrayIndex == queries.length) {
+                    cb ();
+                    return;
+                }
+                gateway.execute (queries[currentArrayIndex], function (records) {
+                    currentArrayIndex ++;
+                    callback ();
+                });
+            };
+            callback ();
+        },
+
         'deleteRecordTree' : function (recordId, cb) {
             cb = cb || function () {};
 

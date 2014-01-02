@@ -79,7 +79,7 @@ module.exports.insertObject = function (req, res) {
     });
 };
 
-module.exports.getEditFields = function (req, res) {
+var getRecords = function (req, res) {
     var currClass = req.query.class;
     var currRecordId = req.query.id;
     if (!currClass || !currRecordId) {
@@ -91,6 +91,10 @@ module.exports.getEditFields = function (req, res) {
         res.send (resultedTables);
     } );
 };
+
+module.exports.getEditFields = getRecords;
+
+module.exports.getInfoFields = getRecords;
 
 module.exports.updateObject = function (req, res) {
     var tables = req.body.data;
@@ -107,12 +111,30 @@ module.exports.updateObject = function (req, res) {
 
 module.exports.deleteObject = function (req, res) {
     var currObjectId = req.body.id;
+    var currentClassId = req.body.class;
+    var currentClassName = req.body.className;
 
     if (!currObjectId) {
         res.send ({ 'err' : true });
         return;
     }
-    registry.get ('dbGateway').deleteRecordTree ( currObjectId, function (result) {
-        res.send ({ 'ok' : true });
-    });
+    console.log (currentClassName);
+    var dbProto = registry.get ("universityProto");
+    if ( dbProto.processesReferences.hasOwnProperty (currentClassName) ) {
+        var queries = dbProto.processesReferences[currentClassName] (currObjectId);
+        try {
+            registry.get ('dbGateway').deleteProcesses ( queries, function () {
+                res.send ({ 'ok' : true });
+            } );
+        }
+        catch (ex) {
+            console.log ("SQL execution error" + queries);
+            res.send ({ 'ok' : true });
+        }
+    }
+    else {
+        registry.get ('dbGateway').deleteRecordTree ( currObjectId, function (result) {
+            res.send ({ 'ok' : true });
+        });
+    }
 };

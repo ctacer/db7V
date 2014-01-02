@@ -13,9 +13,27 @@
     padding: 0px 4px;
     border-bottom: 1px solid #fff;
 }
+.collapsable-child .collapsable-content {
+    border-left: 1px solid #000;
+}
 .collapsable-content:hover {
     cursor: pointer;
     border-bottom-color: #000;
+}
+.collapsable-trigger {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: url(/resources/imgs/plus-minus-icons.png) no-repeat center center;
+    background-position-y: -22px;
+    display: inline-block;
+    top: 4px;
+}
+.collapsable-trigger.active {
+    background-position-y: 0px;
+}
+.collapsable-trigger:hover {
+    cursor: pointer;
 }
 .selected-text {
     background-color: rgba(0,0,0,0.4);

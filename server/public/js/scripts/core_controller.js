@@ -38,16 +38,17 @@ var mainController = ( function () {
     var initDBButtons = function () {
         initAddEntityButton ();
         initEditEntityButton ();
+        initInfoEntityButton ();
         initDeleteEntityButton ();
     };
 
     var initAddEntityButton = function () {
         var addEntityBtnClicked = function () {
-            var selectedTreeNode = $ ("." + config.css.collapsableContent + "." + config.css.selectedText);
+            var selectedTreeNode = $ ("#" + config.css.leftContainer + " ." + config.css.collapsableContent + "." + config.css.selectedText);
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openInsertFrom (treeViewController.getObjects ({'id' : $ (selectedTreeNode[0] ).attr ("data-id") }))
+            dbManager.openInsertFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
         };
         $ ("#" + config.css.addEntityBtn ).click (addEntityBtnClicked);
     };
@@ -58,24 +59,42 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openEditFrom (treeViewController.getObjects ({'id' : $ (selectedTreeNode[0] ).attr ("data-id") }));
+            dbManager.openEditFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
         };
         $ ("#" + config.css.editEntryBtn).click (editButtonClicked);
     };
 
-    var initDeleteEntityButton = function () {
-        var deleteButtonClicked = function () {
-            var selectedTreeNode = $ ("." + config.css.collapsableContent + "." + config.css.selectedText);
+    var initInfoEntityButton = function () {
+        var infoButtonClicked = function () {
+            var selectedTreeNode = $ ("#" + config.css.leftContainer + " ." + config.css.collapsableContent + "." + config.css.selectedText);
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openDeleteFrom (treeViewController.getObjects ({'id' : $ (selectedTreeNode[0] ).attr ("data-id") }))
+            dbManager.openInfoFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
+        };
+        $ ("#" + config.css.infoEntryBtn).click (infoButtonClicked);
+    };
+
+    var initDeleteEntityButton = function () {
+        var deleteButtonClicked = function () {
+            var selectedTreeNode = $ ("#" + config.css.leftContainer + " ." + config.css.collapsableContent + "." + config.css.selectedText);
+            if ( !selectedTreeNode.length ) return;
+
+            $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
+            dbManager.openDeleteFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
         };
         $ ("#" + config.css.deleteEntryBtn).click (deleteButtonClicked);
     };
 
+    var getSelectedObject = function () {
+        var selectedTreeNode = $ ("#" + config.css.leftContainer + " ." + config.css.collapsableContent + "." + config.css.selectedText);
+        if ( !selectedTreeNode.length ) return null;
+        return treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") );
+    };
+
     return {
-        "initialize" : initialize
+        "initialize" : initialize,
+        "getSelectedObject" : getSelectedObject
     }
 
 } ) ();

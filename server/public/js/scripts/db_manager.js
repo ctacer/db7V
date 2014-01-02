@@ -19,11 +19,17 @@ var dbManager = ( function () {
     };
 
     var openInsertForm = function (objects) {
+        console.log ("Inserting to", objects[0]);
         $ ('.' + config.css.dbManagmentHeader).removeClass (config.css.hidden);
-        templateBuilder.buildInsertClasses ( getAvailableClasses (objects[0]) );
+        var availableClasses = getAvailableClasses (objects[0]);
+        if ( !availableClasses || !availableClasses.length || !availableClasses[0]) {
+            $ ("#" + config.css.homeBtn).trigger ('click');
+            return;
+        }
+        templateBuilder.buildInsertClasses ( availableClasses );
         $ ('.' + config.css.dbManagmentBody).empty ();
         $ ('.' + config.css.dbManagmentFooter).addClass (config.css.hidden);
-        setSelectHandler (objects[0]);
+        setSelectHandler ( helper.js.clone (objects[0]) );
     };
 
     var getFieldsForClass = function (choosenClassObject, object) {
@@ -43,9 +49,13 @@ var dbManager = ( function () {
     var setSelectHandler = function (object) {
         var selector = "#" + config.css.recordType;
         var selectElement = $ (selector);
+        var refObject;
+
         var classSelected = function () {
             var className = $ (selector + " option:selected").text ();
-            getFieldsForClass ( { 'name' :className, 'id' : $ (this).val () }, object);
+            refObject = mainController.getSelectedObject ()[0];
+            console.log (object, refObject);
+            getFieldsForClass ( { 'name' :className, 'id' : $ (this).val () }, refObject);
         };
 
         selectElement.change ( classSelected );
@@ -169,7 +179,28 @@ var dbManager = ( function () {
             .on ('click', cancelBtnClicked);
     };
 
+    var openInfoFrom = function (objects) {
+        console.log ("Info for", objects[0]);
+        $ ('.' + config.css.dbManagmentHeader).addClass (config.css.hidden);
+        var objectClass = classes[objects[0].class].name;
+        if (!objectClass) return;
+
+        var url = helper.ajax.buildUrl (config, config.server.routes.getInfoFields);
+        url += config.server.requestParams.editFieldsClass + objectClass;
+        url += config.server.requestParams.editFieldsId + objects[0].id;
+        helper.ajax.get (url, function (res) {
+            console.log (res);
+            var tables = res.map ( function (object) {
+                return { 'name' : object.name, 'fields' : object.exportedFields };
+            });
+            templateBuilder.buildInfoForm (tables, classes[objects[0].class], objects[0]);
+            //setObjectBrowserEvents ();
+            setCancelButtonClick ();
+        });
+    };
+
     var openEditFrom = function (objects) {
+        console.log ("Inserting over", objects[0]);
         $ ('.' + config.css.dbManagmentHeader).addClass (config.css.hidden);
         var objectClass = classes[objects[0].class].name;
         if (!objectClass) return;
@@ -204,12 +235,18 @@ var dbManager = ( function () {
     };
 
     var openDeleteFrom = function (objects) {
+        console.log ("Deleting the", objects[0]);
         $ ('.' + config.css.dbManagmentHeader).addClass (config.css.hidden);
         var objectClass = classes[objects[0].class].name;
         if (!objectClass) return;
 
+
+        var className = classes[objects[0].class];
+        if (className) {
+            className = className.name;
+        }
         templateBuilder.buildDeleteForm (objects[0]);
-        setDeleteObjectEvent ({ 'class' : objects[0].class, 'id' : objects[0].id });
+        setDeleteObjectEvent ({ 'class' : objects[0].class, 'className' : className, 'id' : objects[0].id });
         setCancelButtonClick ();
     };
 
@@ -233,6 +270,7 @@ var dbManager = ( function () {
         "setClasses" : setClasses,
         "openInsertFrom" : openInsertForm,
         "openEditFrom" : openEditFrom,
+        "openInfoFrom" : openInfoFrom,
         "openDeleteFrom" : openDeleteFrom
     };
 

@@ -21,6 +21,7 @@ var config = {
                 "selectClasses" : "/get/classes",
                 "getTemplate" : "/get/template",
                 "getInsertFields" : "/get/fields",
+                "getInfoFields" : "/get/info_fields",
                 "getEditFields" : "/get/edit_fields"
             },
             "postRequests" : {

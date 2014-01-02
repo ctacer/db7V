@@ -73,6 +73,17 @@ var treeViewController = ( function () {
 
     var intiUI = function () {
         initSelectNode ();
+        setTriggerHandlers ( $ ("#" + config.css.leftContainer) );
+    };
+
+    var setTriggerHandlers = function (content) {
+        var triggers = content.find ("." + config.css.collapsableTrigger);
+        var triggerClick = function () {
+            var parent = $ (this).parent ();
+            parent.find ("." + config.css.collapsableChild).toggleClass (config.css.hidden);
+            $ (this).toggleClass (config.css.active);
+        };
+        triggers.off ('click').on ('click', triggerClick);
     };
 
     var initSelectNode = function () {
@@ -84,15 +95,13 @@ var treeViewController = ( function () {
         treeNodes.click (treeViewClicked);
     };
 
-    var getObjects = function (condition) {
+    var getObjectsById = function (conditionId) {
         var returnObjects = [];
-        if ( !condition ) return uObjects;
+        if ( !conditionId ) return uObjects;
 
         for (var i = 0; i < uObjects.length; i ++) {
-            for (var key in condition) {
-                if (uObjects[i].hasOwnProperty (key) && uObjects[i][key] == condition[key] ) {
-                    returnObjects.push (uObjects[i]);
-                }
+            if ( uObjects[i].id == conditionId ) {
+                returnObjects.push (uObjects[i]);
             }
         }
         return returnObjects;
@@ -100,7 +109,8 @@ var treeViewController = ( function () {
 
     return {
         "initialize" : init,
-        "getObjects" : getObjects,
-        "rerfeshObjects" : rerfeshObjects
+        "getObjectsById" : getObjectsById,
+        "rerfeshObjects" : rerfeshObjects,
+        "setTriggerHandlers" : setTriggerHandlers
     }
 } ) ();

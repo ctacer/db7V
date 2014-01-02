@@ -349,7 +349,12 @@ module.exports = {
                 "reference" : "id"
             }
         },
-        "painting" : {},
+        "painting" : {
+            "id" : {
+                "table" : "process",
+                "reference" : "id"
+            }
+        },
         "person" : {
             "id" : {
                 "table" : "uobject",
@@ -410,14 +415,24 @@ module.exports = {
                 "reference" : "id"
             }
         },
-        "process" : {},
+        "process" : {
+            "id" : {
+                "table" : "uobject",
+                "reference" : "id"
+            }
+        },
         "rectorat" : {
             "id" : {
                 "table" : "institutionorg",
                 "reference" : "id"
             }
         },
-        "remont" : {},
+        "remont" : {
+            "id" : {
+                "table" : "process",
+                "reference" : "id"
+            }
+        },
         "subject" : {
             "id" : {
                 "table" : "obj",
@@ -446,7 +461,24 @@ module.exports = {
     },
     "fieldReferences" : {
         "group" : "curator",
-        "institutionorg" : "chief",
-        "universities" : "accredetation"
+        "institutionorg" : "chief"
+    },
+    "processesReferences" : {
+        "remont" : function (recordId) {
+            var queries = [
+                "DELETE FROM `remont` WHERE id=" + recordId,
+                "DELETE FROM `process` WHERE id=" + recordId,
+                "DELETE FROM `uobject` WHERE id=" + recordId
+            ];
+            return queries;
+        },
+        "painting" : function (recordId) {
+            var queries = [
+                "DELETE FROM `painting` WHERE id=" + recordId,
+                "DELETE FROM `process` WHERE id=" + recordId,
+                "DELETE FROM `uobject` WHERE id=" + recordId
+            ];
+            return queries;
+        }
     }
 };

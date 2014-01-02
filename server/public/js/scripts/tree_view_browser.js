@@ -47,6 +47,7 @@ var browser = (function () {
         exportedTreeViewHtml = exportedTreeView.html ().replace (config.css.selectedText, '');
         container.find ("." + config.css.browserBody).append ( $ (exportedTreeViewHtml) );
         setSelectionHandlers ();
+        treeViewController.setTriggerHandlers ( $ ("#" + config.css.browseTreeView) );
         setHandlers (cb);
     };
 
