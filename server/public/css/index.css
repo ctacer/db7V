@@ -2,6 +2,7 @@
 body {
     margin: 0px;
     padding: 0px;
+    -webkit-user-select: none;
 }
 .float-left {
     float: left;
@@ -11,6 +12,9 @@ body {
 }
 .clear-float {
     clear: both;
+}
+.hidden {
+    display: none;
 }
 span {
     -webkit-user-select: none;
@@ -52,34 +56,7 @@ span {
     left: 5%;
     height: 100%;
 }
-#tree-view-container {
-    width: 50%;
-    z-index: 1;
-    background-color: rgba(255,255,255,0.85);
-    left: 0%;
-}
-#db-managment-container {
-    display: none;
-    width: 50%;
-    z-index: 2;
-    background-color: rgba(255,255,255,0.85);
-    left: 50%;
-}
-#db-managment-container.visible {
-    display: initial;
-    left: 30%;
-    width: 70%;
-}
-.container-element {
-    border: 1px solid rgba(0,0,0,0.4);
-    background-color: #fff;
-    position: absolute;
-    border-left: 1px solid #000;
-    box-sizing: border-box;
-}
-.db-managment-header {
-    text-align: center;
-}
+
 
 /*
 footer's styles

@@ -17,6 +17,10 @@ var treeViewController = ( function () {
         helper.ajax.get ( helper.ajax.buildUrl(config, config.server.routes.getClasses), classesReceived );
     };
 
+    var rerfeshObjects = function () {
+        helper.ajax.get ( helper.ajax.buildUrl(config, config.server.routes.getObjects), objectsReceived );
+    };
+
     var objectsReceived = function (objects) {
         uObjects = objects;
         console.log (uObjects);
@@ -72,7 +76,7 @@ var treeViewController = ( function () {
     };
 
     var initSelectNode = function () {
-        var treeNodes = $ ("." + config.css.collapsableContent);
+        var treeNodes = $ ("#" + config.css.leftContainer + " ." + config.css.collapsableContent);
         var treeViewClicked = function () {
             treeNodes.removeClass (config.css.selectedText);
             $ (this).addClass (config.css.selectedText);
@@ -96,6 +100,7 @@ var treeViewController = ( function () {
 
     return {
         "initialize" : init,
-        "getObjects" : getObjects
+        "getObjects" : getObjects,
+        "rerfeshObjects" : rerfeshObjects
     }
 } ) ();

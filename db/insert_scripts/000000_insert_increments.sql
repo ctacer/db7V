@@ -1,0 +1,1 @@
+INSERT INTO `university2.0.`.uincrements (id, uobject_last_id) VALUES (1,1);

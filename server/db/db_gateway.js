@@ -180,6 +180,112 @@ module.exports = function(){
             cb = cb || function () {};
             var query = 'SELECT * FROM `' + table + '`';
             executeQuery(query, function(result, fields){cb(result);});
+        },
+
+        'updateIncrements' : function (cb) {
+            cb = cb || function () {};
+
+            var table = 'uincrements';
+            var condition = { 'id' : 1 };
+            gateway.selectFirst (table, condition, function (record) {
+                gateway.update (table, {'uobject_last_id' : record.uobject_last_id + 1 }, condition, function () {
+                    cb ();
+                });
+            });
+        },
+
+        'getIncrements' : function (cb) {
+            cb = cb || function () {};
+
+            var table = 'uincrements';
+            var condition = { 'id' : 1 };
+            gateway.selectFirst (table, condition, function (record) {
+                console.log (record);
+                cb (record.uobject_last_id + 1);
+            });
+        },
+
+        'insertRecordTree' : function (recordsArray, cb) {
+            cb = cb || function () {};
+            recordsArray.sort (function (object, next) {
+                return object.level < next.level;
+            });
+
+            var insertId, table, insertObject;
+            var currentArrayIndex = 0;
+            var callback = function () {
+                if (currentArrayIndex == recordsArray.length) {
+                    cb ();
+                    return;
+                }
+                table = recordsArray[currentArrayIndex].name;
+                insertObject = recordsArray[currentArrayIndex].fields;
+                insertObject.id = insertId;
+                gateway.insert (table, insertObject, function () {
+                    currentArrayIndex ++;
+                    callback ();
+                });
+            };
+
+            gateway.getIncrements (function (__insertId) {
+                insertId = __insertId;
+                callback ();
+                gateway.updateIncrements ();
+            });
+        },
+
+        'selectRecordTree' : function (recordsArray, recordId, cb) {
+            cb = cb || function () {};
+            var table;
+            var currentArrayIndex = 0;
+
+            var condition = {};
+            condition.id = recordId;
+
+            var callback = function () {
+                if (currentArrayIndex == recordsArray.length) {
+                    cb (recordsArray);
+                    return;
+                }
+                table = recordsArray[currentArrayIndex].name;
+                gateway.select (table, condition, function (records) {
+                    recordsArray[currentArrayIndex].exportedFields = records[0];
+                    currentArrayIndex ++;
+                    callback ();
+                });
+            };
+            callback ();
+        },
+
+        'updateRecordTree' : function (recordsArray, condition, cb) {
+            cb = cb || function () {};
+            var table, fieldToUpdate;
+            var currentArrayIndex = 0;
+
+            var callback = function () {
+                if (currentArrayIndex == recordsArray.length) {
+                    cb ();
+                    return;
+                }
+                table = recordsArray[currentArrayIndex].name;
+                fieldToUpdate = recordsArray[currentArrayIndex].fields;
+                gateway.update (table, fieldToUpdate, condition, function (records) {
+                    currentArrayIndex ++;
+                    callback ();
+                });
+            };
+            callback ();
+        },
+
+        'deleteRecordTree' : function (recordId, cb) {
+            cb = cb || function () {};
+
+            var table = 'uobject';
+            var query =
+                "DELETE FROM `" + table + "` WHERE " +
+                "id=" + recordId + " OR major=" + recordId;
+
+            gateway.execute (query, cb);
         }
     };
 

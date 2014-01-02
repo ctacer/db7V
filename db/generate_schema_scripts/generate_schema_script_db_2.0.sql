@@ -94,10 +94,10 @@ COLLATE utf8_unicode_ci;
 -- Definition for table classes
 --
 CREATE TABLE classes (
-  ID int(11) NOT NULL AUTO_INCREMENT,
+  id int(11) NOT NULL AUTO_INCREMENT,
   Name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   Children mediumtext DEFAULT NULL,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (id)
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -108,10 +108,10 @@ COLLATE utf8_unicode_ci;
 -- Definition for table classes_func
 --
 CREATE TABLE classes_func (
-  ID int(11) NOT NULL AUTO_INCREMENT,
+  id int(11) NOT NULL AUTO_INCREMENT,
   Name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   Children mediumtext DEFAULT NULL,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (id)
 )
 ENGINE = INNODB
 AUTO_INCREMENT = 1
@@ -727,3 +727,9 @@ CREATE TABLE uobject (
 ENGINE = INNODB
 CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
+
+CREATE TABLE `university2.0.`.uincrements (
+  id int NOT NULL DEFAULT 1,
+  uobject_last_id int NOT NULL DEFAULT 1
+)
+ENGINE = INNODB;

@@ -6,6 +6,7 @@ var app = express();
 
 registry.set ("config", require ( __dirname + "/config/server.config.js") ( app.get ("env") ) );
 registry.set ("dbConfig", require (__dirname + "/config/universiity.db.config.js"));
+registry.set ("universityProto", require (__dirname + "/db/university_proto.js"));
 registry.set ("rootDirname", __dirname );
 
 registry.set ("http", require ("http") );

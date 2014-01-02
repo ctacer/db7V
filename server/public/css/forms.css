@@ -1,0 +1,84 @@
+#tree-view-container {
+    width: 50%;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.85);
+    left: 0%;
+}
+#db-managment-container {
+    display: none;
+    width: 50%;
+    z-index: 2;
+    background-color: rgba(255,255,255,0.85);
+    left: 50%;
+}
+#db-managment-container.visible {
+    display: initial;
+    left: 5%;
+    width: 90%;
+}
+#browse-tree-view {
+    left: 10%;
+    z-index: 3;
+    background-color: rgba(255,255,255,0.85);
+    width: 85%;
+}
+.container-element {
+    border: 1px solid rgba(0,0,0,0.4);
+    background-color: #fff;
+    position: absolute;
+    border-left: 1px solid #000;
+    box-sizing: border-box;
+}
+.db-managment-header, .browser-header {
+    text-align: center;
+}
+.db-managment-footer, .browser-footer {
+    -webkit-user-select: none;
+    text-align: right;
+    padding: 5px 20px;
+}
+#db-managment-insert-btn {}
+#db-managment-edit-btn {}
+.db-managment-btn {
+    padding: 5px 20px;
+    border: 1px solid #000;
+}
+.db-managment-btn:hover {
+    border-color: lightblue;
+    cursor: pointer;
+}
+.uneditable-field {
+    background-color: rgba(0,0,0,0.1);
+}
+.record-type-label {
+    padding: 0px 20px;
+}
+.db-managment-body, .browser-body {
+    padding: 20px;
+}
+.db-managment-field-container {
+    box-sizing: border-box;
+    border: 1px solid transparent;
+}
+.db-managment-field-element {
+    width: 60%;
+    box-shadow: 0px 0px 1px 1px lightblue;
+    min-height: 20px;
+    text-align: center;
+    -webkit-user-select: initial;
+}
+.db-managment-field-browse-btn {
+    -webkit-user-select: none;
+    width: 10%;
+    box-shadow: inset 0px 0px 1px 1px #000;
+    text-align: center;
+}
+.db-managment-field-browse-btn:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 1px 1px lightblue;
+}
+.db-managment-field-label {
+    width: 30%;
+    box-shadow: 0px 0px 2px 1px transparent;
+    -webkit-user-select: initial;
+}

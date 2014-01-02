@@ -13,6 +13,7 @@
     <script src="/js/scripts/db_manager.js"></script>
     <script src="/js/scripts/template_builder.js"></script>
     <script src="/js/scripts/core_controller.js"></script>
+    <script src="/js/scripts/tree_view_browser.js"></script>
     <script src="/js/scripts/tree_view_controller.js"></script>
     <script src="/config/config.js"></script>
     <script src="/js/scripts/core.js"></script>
@@ -29,9 +30,24 @@
             <div id="tree-view-container" class="container-element"></div>
             <div id="db-managment-container" class="container-element">
                 <div class="db-managment-header">
+                    <span class="record-type-label">Choose object class</span>
                     <select id="record-type"></select>
                 </div>
                 <div class="db-managment-body"></div>
+                <div class="db-managment-footer hidden">
+                    <span id="db-managment-cancel-btn" class="db-managment-btn hidden">cancel</span>
+                    <span id="db-managment-insert-btn" class="db-managment-btn hidden">insert</span>
+                    <span id="db-managment-edit-btn" class="db-managment-btn hidden">edit</span>
+                    <span id="db-managment-delete-btn" class="db-managment-btn hidden">delete</span>
+                </div>
+            </div>
+            <div id="browse-tree-view" class="container-element hidden">
+                <div class="browser-header"></div>
+                <div class="browser-body"></div>
+                <div class="browser-footer">
+                    <span id="browser-cancel-btn" class="db-managment-btn">cancel</span>
+                    <span id="browser-ok-btn" class="db-managment-btn">ok</span>
+                </div>
             </div>
         </div>
     </div>

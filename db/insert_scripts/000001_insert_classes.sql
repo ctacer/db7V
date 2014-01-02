@@ -4,7 +4,7 @@ INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 3, 'deanery',
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 4, 'persongraduatestudent', '7 10 22 30 12 28 33');
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 5, 'chummery', '1 27 2 4 7 10 11 22 30 12 13 17 18 20 28 23 24 33 35');
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 6, 'personentrants', '7 10 22 30 12 28 33');
-INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 7, 'equipment', '35 36 35');
+INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 7, 'equipment', '35 36');
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 8, 'faculty', '1 27 25 2 3 4 6 7 9 10 11 22 30 12 13 14 17 18 19 20 28 23 24 33 35 36');
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 9, 'group', '1 2 7 10 22 30 12 14 17 18 28 24 25 31 33');
 INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 10, 'documentpersonal' );

@@ -19,7 +19,14 @@ var config = {
             "requests" : {
                 "selectObjects" : "/get/objects",
                 "selectClasses" : "/get/classes",
-                "getTemplate" : "/get/template"
+                "getTemplate" : "/get/template",
+                "getInsertFields" : "/get/fields",
+                "getEditFields" : "/get/edit_fields"
+            },
+            "postRequests" : {
+                "insertObject" : "/post/object",
+                "updateObject" : "/update/object",
+                "deleteObject" : "/delete/object"
             },
             "paths" : {
                 "homePage" : "/index"
