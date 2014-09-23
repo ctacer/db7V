@@ -2,6 +2,8 @@
 registry = require ( __dirname + "/utils/registry.js" );
 
 var express = require('express');
+var bodyParser = require('body-parser');
+
 var app = express();
 
 registry.set ("config", require ( __dirname + "/config/server.config.js") ( app.get ("env") ) );
@@ -22,13 +24,9 @@ app.set ('port', registry.get ("config" ).server.port );
 app.set ('views', __dirname + '/views');
 
 app.use(express.static('public'))
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
-// development only
-if ('development' == app.get('env')) {
-    app.use(express.errorHandler());
-}
 
 app.get( registry.get ("config" ).routes.mainRouteComponent + "/status", registry.get ("mainRoute" ).getStatus );
 registry.get ("routeInitializer") (app);
