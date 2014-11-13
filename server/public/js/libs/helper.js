@@ -51,8 +51,8 @@
         $.post (url ,postData, callback);
     };
 
-    ajax.buildUrl = function (config, route) {
-        return config.server.protocol + config.server.host + config.server.port + route;
+    ajax.buildUrl = function (local, route) {
+        return local.host + route;
     };
 
     var helper = {};

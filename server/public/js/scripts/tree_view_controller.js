@@ -13,12 +13,12 @@ var treeViewController = ( function () {
     };
 
     var loadData = function () {
-        helper.ajax.get ( helper.ajax.buildUrl(config, config.server.routes.getObjects), objectsReceived );
-        helper.ajax.get ( helper.ajax.buildUrl(config, config.server.routes.getClasses), classesReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getClasses), classesReceived );
     };
 
     var rerfeshObjects = function () {
-        helper.ajax.get ( helper.ajax.buildUrl(config, config.server.routes.getObjects), objectsReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived );
     };
 
     var objectsReceived = function (objects) {
@@ -52,6 +52,7 @@ var treeViewController = ( function () {
      * @param responseClasses
      */
     var classesReceived = function (responseClasses) {
+        console.log(responseClasses);
         var classesMappings = config.serverData.classes;
         var key, children;
         for (var i = 0; i < responseClasses.length; i ++ ) {

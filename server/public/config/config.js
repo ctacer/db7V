@@ -46,9 +46,6 @@ var config = {
         "footer" : 50
     },
     "server" : {
-        "protocol" : "http://",
-        "host" : "localhost",
-        "port" : ":3000",
         "routes" : {
             "getObjects" : "/get/objects",
             "getClasses" : "/get/classes",
@@ -65,6 +62,24 @@ var config = {
             "insertFields" : "?class=",
             "editFieldsClass" : "?class=",
             "editFieldsId" : "&id="
+        },
+        "locations": {
+            "home": {
+                "label": "home",
+                "host": "http://localhost:3000"
+            },
+            "first": {
+                "label" : "first",
+                "host" : "http://localhost:3001"
+            },
+            "second": {
+                "label" : "second",
+                "host" : "http://localhost:3002"
+            },
+            "third": {
+                "label" : "third",
+                "host" : "http://localhost:3003"
+            }
         }
     },
     "serverData" : {

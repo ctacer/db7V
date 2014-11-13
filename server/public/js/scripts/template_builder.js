@@ -12,7 +12,7 @@ var templateBuilder = (function () {
     };
 
     var loadTemplates = function (cb) {
-        var url = helper.ajax.buildUrl (config, config.server.routes.getTemplate);
+        var url = helper.ajax.buildUrl (config.server.locations.home, config.server.routes.getTemplate);
         url += config.server.requestParams.treeView;
         var templateCallback = function (data) {
             if ( !data.err ) {
