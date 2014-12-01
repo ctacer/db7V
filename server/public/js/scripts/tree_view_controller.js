@@ -13,19 +13,21 @@ var treeViewController = ( function () {
     };
 
     var loadData = function () {
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived('server1') );
         helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getClasses), classesReceived );
     };
 
     var rerfeshObjects = function () {
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived('server1') );
     };
 
-    var objectsReceived = function (objects) {
-        uObjects = objects;
-        console.log (uObjects);
-        templateBuilder.buildTreeView (objects);
-        intiUI ();
+    var objectsReceived = function (server) {
+        return function (objects) {
+            uObjects = objects;
+            console.log (uObjects);
+            templateBuilder.buildTreeView (objects, { server: server });
+            intiUI ();
+        };
     };
 
     /**

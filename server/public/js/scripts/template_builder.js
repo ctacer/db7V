@@ -58,12 +58,14 @@ var templateBuilder = (function () {
         });
     };
 
-    var buildTreeView = function (objects) {
+    var buildTreeView = function (objects, opts) {
+        opts = opts || {};
+        
         var uObjectMappings = config.serverData.uObjects;
         var objectElement = jQuery (template);
         sortObjects (objects);
 
-        var currentAppendy = $ ('#' + config.css.treeViewContainer);
+        var currentAppendy = $ ('#' + config.css[opts.server]);
         currentAppendy.empty ();
         var currentMajor, preventMajor = 0;
 
