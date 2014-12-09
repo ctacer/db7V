@@ -3,16 +3,19 @@
  * @returns {{connect: Function, disconnect: Function, insert: Function, remove: Function, select: Function}}
  */
 module.exports = function(){
+    var pg = require('pg');
     var config = (registry.get ("config"));
-    var MySQLPool = registry.get ("mysqlPool").MySQLPool;
-    var client = new MySQLPool({
-        poolSize: config.db.poolSize,
-        user:     config.db.user,
-        password: config.db.password,
-        database: config.db.dbName,
-        host: config.db.host,
-        supportBigNumbers : true
+
+    var conString = "postgres://" + config.db.user + ":" + config.db.password + "@localhost/" + config.db.dbname;
+
+    var client = new pg.Client(conString);
+    client.connect(function(err) {
+      if(err) {
+        return console.error('could not connect to postgres', err);
+      }
     });
+
+    client.escape = function (val) { return val; };
 
     /**
     * Slashes arguments to use in MySQL DB queries
@@ -34,7 +37,7 @@ module.exports = function(){
         var result = '';
         var key;
         for (key in obj) {
-            result += '`' + key + '`= ' + client.escape(obj[key]) + ', ';
+            result += "'" + key + "'= " + client.escape(obj[key]) + ', ';
         }
         if (result.length>0){
             result = result.substr(0, result.length - 2);
@@ -46,7 +49,7 @@ module.exports = function(){
         var result = '';
         var key;
         for (key in obj) {
-            result += '`' + key + '`= ' + client.escape(obj[key]) + ' AND ';
+            result += "'" + key + "'= " + client.escape(obj[key]) + ' AND ';
         }
         if (result.length>0){
             result = result.substr(0, result.length - 5);
@@ -86,7 +89,7 @@ module.exports = function(){
          */
         'insertIgnore': function (table, obj, cb) {
             cb = cb || function () {};
-            var query = 'INSERT IGNORE INTO `' + table + '` SET ' + getKeyValExpr(obj);
+            var query = 'INSERT IGNORE INTO "' + table + '" SET ' + getKeyValExpr(obj);
             executeQuery(query, function (result, fields) { cb(result.affectedRows); });
         },
 
@@ -95,7 +98,7 @@ module.exports = function(){
          */
         'insert': function (table, obj, cb) {
             cb = cb || function () {};
-            var query = 'INSERT INTO `' + table + '` SET ' + getKeyValExpr(obj);
+            var query = 'INSERT INTO "' + table + '" SET ' + getKeyValExpr(obj);
             executeQuery(query, function (result, fields){ cb(result); });
         },
 
@@ -105,7 +108,7 @@ module.exports = function(){
          */
         'insertAll': function (table, obj, cb) {
             cb = cb || function () {};
-            var query = 'INSERT INTO `' + table + '` VALUES';
+            var query = 'INSERT INTO "' + table + '" VALUES';
             var i=0;
             for(; i < obj.length; i++){
                 query += " (";
@@ -128,7 +131,7 @@ module.exports = function(){
          */
         'insertUpdate': function (table, obj, cb) {
             cb = cb || function () {};
-            var query = 'INSERT INTO `' + table + '` SET ' + getKeyValExpr(obj) + ' ON DUPLICATE KEY UPDATE ' + getKeyValExpr(obj);
+            var query = 'INSERT INTO "' + table + '" SET ' + getKeyValExpr(obj) + ' ON DUPLICATE KEY UPDATE ' + getKeyValExpr(obj);
             executeQuery(query, function (result, fields){ cb(result); });
         },
 
@@ -137,7 +140,7 @@ module.exports = function(){
          */
         'remove': function (table, condition, cb) {
             cb = cb || function () {};
-            var query = 'DELETE FROM `' + table + '` WHERE ' + getKeyValExpr(condition);
+            var query = 'DELETE FROM "' + table + '" WHERE ' + getKeyValExpr(condition);
             executeQuery(query, function (result, fields) { cb(); } );
         },
 
@@ -146,7 +149,7 @@ module.exports = function(){
           */
         'update': function (table, fieldVals, condition, cb) {
             cb = cb || function () {};
-            var query = 'UPDATE `' + table + '` SET ' + getKeyValExpr(fieldVals) + ' WHERE ' + getKeyValExpr(condition);
+            var query = 'UPDATE "' + table + '" SET ' + getKeyValExpr(fieldVals) + ' WHERE ' + getKeyValExpr(condition);
             executeQuery(query, function(result, fields){ cb(result) });
         },
 
@@ -155,9 +158,9 @@ module.exports = function(){
          */
         'select': function (table, condition, cb) {
             cb = cb || function () {};
-            var query = 'SELECT * FROM `' + table + '`';
+            var query = 'SELECT * FROM "' + table + '"';
             if(condition)query = query +' WHERE ' + getKeyValExprAnd(condition);
-            executeQuery(query, function(result, fields){cb(result);});
+            executeQuery(query, function(result, fields){cb(result.rows);});
         },
 
         /**
@@ -165,10 +168,10 @@ module.exports = function(){
          */
         'selectFirst' : function(table, condition, cb){
             cb = cb || function () {};
-            var query = 'SELECT * FROM `' + table + '`';
+            var query = 'SELECT * FROM "' + table + '"';
             if(condition)query = query +' WHERE ' + getKeyValExprAnd(condition) + ' LIMIT 1;';
             executeQuery(query, function(result, fields){
-                var res = result.length > 0 ? result[0] : false;
+                var res = result.rows.length > 0 ? result.rows[0] : false;
                 cb(res);
             });
         }
@@ -178,8 +181,8 @@ module.exports = function(){
          */
         , 'selectAll': function (table, cb) {
             cb = cb || function () {};
-            var query = 'SELECT * FROM `' + table + '`';
-            executeQuery(query, function(result, fields){cb(result);});
+            var query = 'SELECT * FROM "' + table + '"';
+            executeQuery(query, function(result, fields){cb(result.rows);});
         },
 
         'updateIncrements' : function (cb) {
@@ -299,7 +302,7 @@ module.exports = function(){
 
             var table = 'uobject';
             var query =
-                "DELETE FROM `" + table + "` WHERE " +
+                "DELETE FROM \"" + table + "\" WHERE " +
                 "id=" + recordId + " OR major=" + recordId;
 
             gateway.execute (query, cb);

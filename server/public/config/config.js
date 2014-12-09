@@ -19,7 +19,6 @@ var config = {
         "treeViewContainer" : "tree-view-container",
         "server1" : "server-1",
         "server2" : "server-2",
-        "server3" : "server-3",
         "recordType" : "record-type",
         "dbManagmentHeader" : "db-managment-header",
         "dbManagmentBody" : "db-managment-body",
@@ -71,17 +70,13 @@ var config = {
                 "label": "home",
                 "host": "http://localhost:3000"
             },
-            "first": {
+            "server1": {
                 "label" : "first",
                 "host" : "http://localhost:3001"
             },
-            "second": {
+            "server2": {
                 "label" : "second",
                 "host" : "http://localhost:3002"
-            },
-            "third": {
-                "label" : "third",
-                "host" : "http://localhost:3003"
             }
         }
     },

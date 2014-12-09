@@ -3,6 +3,7 @@
 var dbManager = ( function () {
 
     var config, classes;
+    var activeServer = 'first';
 
     var init = function (__config) {
         config = __config;
@@ -33,7 +34,7 @@ var dbManager = ( function () {
     };
 
     var getFieldsForClass = function (choosenClassObject, object) {
-        var url = helper.ajax.buildUrl (config.server.locations.first, config.server.routes.getInsertFields);
+        var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.getInsertFields);
         url += config.server.requestParams.insertFields + choosenClassObject.name;
         var dataReceived = function (res) {
             if ( !res.tables || !res.references ) return;
@@ -134,7 +135,7 @@ var dbManager = ( function () {
     };
 
     var postObjectToServer = function (dataToPost) {
-        var url = helper.ajax.buildUrl (config.server.locations.first, config.server.routes.insertObject);
+        var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.insertObject);
         console.log (dataToPost);
         helper.ajax.post (url, { data : dataToPost }, function (res) {
             treeViewController.rerfeshObjects ();
@@ -143,7 +144,7 @@ var dbManager = ( function () {
     };
 
     var updateObjectOnServer = function (dataToPost) {
-        var url = helper.ajax.buildUrl (config.server.locations.first, config.server.routes.updateObject);
+        var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.updateObject);
         console.log (dataToPost);
         helper.ajax.post (url, dataToPost, function (res) {
             treeViewController.rerfeshObjects ();
@@ -185,7 +186,7 @@ var dbManager = ( function () {
         var objectClass = classes[objects[0].class].name;
         if (!objectClass) return;
 
-        var url = helper.ajax.buildUrl (config.server.locations.first, config.server.routes.getInfoFields);
+        var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.getInfoFields);
         url += config.server.requestParams.editFieldsClass + objectClass;
         url += config.server.requestParams.editFieldsId + objects[0].id;
         helper.ajax.get (url, function (res) {
@@ -205,7 +206,7 @@ var dbManager = ( function () {
         var objectClass = classes[objects[0].class].name;
         if (!objectClass) return;
 
-        var url = helper.ajax.buildUrl (config.server.locations.first, config.server.routes.getEditFields);
+        var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.getEditFields);
         url += config.server.requestParams.editFieldsClass + objectClass;
         url += config.server.requestParams.editFieldsId + objects[0].id;
         helper.ajax.get (url, function (res) {
@@ -222,7 +223,7 @@ var dbManager = ( function () {
 
     var setDeleteObjectEvent = function (postData) {
         var buttonClicked = function () {
-            var url = helper.ajax.buildUrl (config.server.locations.first, config.server.routes.deleteObject);
+            var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.deleteObject);
             helper.ajax.post (url, postData, function (res) {
                 console.log (res);
                 treeViewController.rerfeshObjects ();
@@ -265,13 +266,18 @@ var dbManager = ( function () {
         buttons.off ('click').on ('click', buttonClicked);
     };
 
+    var switchServer = function (newServer) {
+        activeServer = newServer;
+    };
+
     return {
         "initialize" : init,
         "setClasses" : setClasses,
         "openInsertFrom" : openInsertForm,
         "openEditFrom" : openEditFrom,
         "openInfoFrom" : openInfoFrom,
-        "openDeleteFrom" : openDeleteFrom
+        "openDeleteFrom" : openDeleteFrom,
+        "switchServer": switchServer
     };
 
 } ) ();

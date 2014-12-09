@@ -66,6 +66,7 @@ var templateBuilder = (function () {
         sortObjects (objects);
 
         var currentAppendy = $ ('#' + config.css[opts.server]);
+        currentAppendy.attr('data-server', opts.server);
         currentAppendy.empty ();
         var currentMajor, preventMajor = 0;
 
@@ -91,6 +92,10 @@ var templateBuilder = (function () {
                 currentAppendy.append (objectElement);
             }
         }
+
+        $ ('#' + config.css[opts.server]).find('*').on('click', function () {
+            dbManager.switchServer(opts.server);
+        });
 
     };
 

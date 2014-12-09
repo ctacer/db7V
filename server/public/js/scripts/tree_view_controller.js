@@ -13,12 +13,16 @@ var treeViewController = ( function () {
     };
 
     var loadData = function () {
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived('server1') );
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getClasses), classesReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getObjects), objectsReceived('server1') );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getClasses), classesReceived );
+
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getObjects), objectsReceived('server2') );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getClasses), classesReceived );
     };
 
     var rerfeshObjects = function () {
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.first, config.server.routes.getObjects), objectsReceived('server1') );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getObjects), objectsReceived('server1') );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getObjects), objectsReceived('server2') );
     };
 
     var objectsReceived = function (server) {
