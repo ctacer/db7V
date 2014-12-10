@@ -2,20 +2,20 @@
 
 var dbManager = ( function () {
 
-    var config, classes;
-    var activeServer = 'first';
+    var config, classes = {};
+    var activeServer = 'server1';
 
     var init = function (__config) {
         config = __config;
     };
 
-    var setClasses = function (__classes) {
-        classes = __classes;
+    var setClasses = function (__classes, server) {
+        classes[server] = __classes;
     };
 
     var getAvailableClasses = function (object) {
         var currClassId = object[config.serverData.uObjects.class];
-        var currClass = classes[currClassId];
+        var currClass = classes[activeServer][currClassId];
         return currClass.children;
     };
 
@@ -183,7 +183,7 @@ var dbManager = ( function () {
     var openInfoFrom = function (objects) {
         console.log ("Info for", objects[0]);
         $ ('.' + config.css.dbManagmentHeader).addClass (config.css.hidden);
-        var objectClass = classes[objects[0].class].name;
+        var objectClass = classes[activeServer][objects[0].class].name;
         if (!objectClass) return;
 
         var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.getInfoFields);
@@ -194,7 +194,7 @@ var dbManager = ( function () {
             var tables = res.map ( function (object) {
                 return { 'name' : object.name, 'fields' : object.exportedFields };
             });
-            templateBuilder.buildInfoForm (tables, classes[objects[0].class], objects[0]);
+            templateBuilder.buildInfoForm (tables, classes[activeServer][objects[0].class], objects[0]);
             //setObjectBrowserEvents ();
             setCancelButtonClick ();
         });
@@ -203,7 +203,7 @@ var dbManager = ( function () {
     var openEditFrom = function (objects) {
         console.log ("Inserting over", objects[0]);
         $ ('.' + config.css.dbManagmentHeader).addClass (config.css.hidden);
-        var objectClass = classes[objects[0].class].name;
+        var objectClass = classes[activeServer][objects[0].class].name;
         if (!objectClass) return;
 
         var url = helper.ajax.buildUrl (config.server.locations[activeServer], config.server.routes.getEditFields);
@@ -214,7 +214,7 @@ var dbManager = ( function () {
             var tables = res.map ( function (object) {
                 return { 'name' : object.name, 'fields' : object.exportedFields };
             });
-            templateBuilder.buildEditForm (tables, classes[objects[0].class], objects[0]);
+            templateBuilder.buildEditForm (tables, classes[activeServer][objects[0].class], objects[0]);
             setObjectBrowserEvents ();
             setCancelButtonClick ();
             setEditButtonClick (tables);
@@ -238,11 +238,11 @@ var dbManager = ( function () {
     var openDeleteFrom = function (objects) {
         console.log ("Deleting the", objects[0]);
         $ ('.' + config.css.dbManagmentHeader).addClass (config.css.hidden);
-        var objectClass = classes[objects[0].class].name;
+        var objectClass = classes[activeServer][objects[0].class].name;
         if (!objectClass) return;
 
 
-        var className = classes[objects[0].class];
+        var className = classes[activeServer][objects[0].class];
         if (className) {
             className = className.name;
         }
@@ -270,6 +270,10 @@ var dbManager = ( function () {
         activeServer = newServer;
     };
 
+    var getServer = function () {
+        return activeServer;
+    };
+
     return {
         "initialize" : init,
         "setClasses" : setClasses,
@@ -277,7 +281,8 @@ var dbManager = ( function () {
         "openEditFrom" : openEditFrom,
         "openInfoFrom" : openInfoFrom,
         "openDeleteFrom" : openDeleteFrom,
-        "switchServer": switchServer
+        "switchServer": switchServer,
+        "getServer": getServer
     };
 
 } ) ();

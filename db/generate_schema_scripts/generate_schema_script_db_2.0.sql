@@ -728,6 +728,20 @@ ENGINE = INNODB
 CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
+--
+-- Definition for table link
+--
+CREATE TABLE link (
+  id int(11) NOT NULL DEFAULT 0,
+  url varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT UObjectLinkInstitution FOREIGN KEY (id)
+  REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
 CREATE TABLE `university2.0.`.uincrements (
   id int NOT NULL DEFAULT 1,
   uobject_last_id int NOT NULL DEFAULT 1

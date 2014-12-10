@@ -173,9 +173,6 @@ module.exports = {
         },
         "student2" : {
             "country" : "String"
-        },
-        "link" : {
-            "url": "String"
         }
     },
     "references" : {
@@ -362,12 +359,6 @@ module.exports = {
             }
         },
         "person" : {
-            "id" : {
-                "table" : "uobject",
-                "reference" : "id"
-            }
-        },
-        "link" : {
             "id" : {
                 "table" : "uobject",
                 "reference" : "id"

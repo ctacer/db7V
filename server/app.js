@@ -23,7 +23,7 @@ app.get('/get/template', function (req, res) {
         return;
     }
     if (templates.hasOwnProperty(type)) {
-        res.sendfile(__dirname + templates[type]);
+        res.sendFile(__dirname + templates[type]);
     }
     else {
         res.send({ 'err' : true, 'msg' : 'type is not valid' });
@@ -31,7 +31,7 @@ app.get('/get/template', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -48,7 +48,7 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openInsertFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
+            dbManager.openInsertFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server'));
         };
         $ ("#" + config.css.addEntityBtn ).click (addEntityBtnClicked);
     };
@@ -59,7 +59,7 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openEditFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
+            dbManager.openEditFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ));
         };
         $ ("#" + config.css.editEntryBtn).click (editButtonClicked);
     };
@@ -70,7 +70,7 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openInfoFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
+            dbManager.openInfoFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ));
         };
         $ ("#" + config.css.infoEntryBtn).click (infoButtonClicked);
     };
@@ -81,7 +81,7 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openDeleteFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") ));
+            dbManager.openDeleteFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ));
         };
         $ ("#" + config.css.deleteEntryBtn).click (deleteButtonClicked);
     };
@@ -89,7 +89,7 @@ var mainController = ( function () {
     var getSelectedObject = function () {
         var selectedTreeNode = $ ("#" + config.css.leftContainer + " ." + config.css.collapsableContent + "." + config.css.selectedText);
         if ( !selectedTreeNode.length ) return null;
-        return treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id") );
+        return treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') );
     };
 
     return {

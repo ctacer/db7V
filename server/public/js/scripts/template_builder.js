@@ -66,12 +66,18 @@ var templateBuilder = (function () {
         sortObjects (objects);
 
         var currentAppendy = $ ('#' + config.css[opts.server]);
+        if (currentAppendy.length == 0) {
+            currentAppendy = $('[data-link-server="' + opts.server + '"]').find('.collapsable-child');
+        }
         currentAppendy.attr('data-server', opts.server);
         currentAppendy.empty ();
         var currentMajor, preventMajor = 0;
 
         for (var i = 0; i < objects.length; i ++) {
             objectElement = jQuery (template);
+            if (objects[i].class == 37) {
+                objectElement.attr('data-link-server', objects[i].name);
+            }
             currentMajor = objects[i][uObjectMappings.major];
             if ( currentMajor == preventMajor ) {
                 objectElement.find ("." + config.css.collapsableContent )
@@ -83,7 +89,11 @@ var templateBuilder = (function () {
             }
             else {
                 preventMajor = currentMajor;
-                currentAppendy = $ ("." + config.css.collapsableContent + "[data-id='" + currentMajor + "']" ).next ();
+                // currentAppendy = $ (config.css[opts.server] ? ('#' + config.css[opts.server]) : ('[data-link-server="' + opts.server + '"]') + " ." + config.css.collapsableContent + "[data-id='" + currentMajor + "']" ).next ();
+                currentAppendy = $ ('#' + config.css[opts.server] + " ." + config.css.collapsableContent + "[data-id='" + currentMajor + "']" ).next ();
+                if (!config.css[opts.server]) {
+                    currentAppendy = $('[data-link-server="' + opts.server + '"]' + " ." + config.css.collapsableContent + "[data-id='" + currentMajor + "']" ).next ();
+                }
                 objectElement.find ("." + config.css.collapsableContent )
                     .text ( objects[i][uObjectMappings.name] )
                     .attr ( "data-id", objects[i][uObjectMappings.id] )
@@ -91,10 +101,30 @@ var templateBuilder = (function () {
 
                 currentAppendy.append (objectElement);
             }
+            if (objects[i].class == 37) {
+                treeViewController.uploadNewServer(objects[i].name);
+            }
         }
 
-        $ ('#' + config.css[opts.server]).find('*').on('click', function () {
-            dbManager.switchServer(opts.server);
+        $ ('#' + config.css['leftContainer']).find('*').off('click').on('click', function (event) {
+            event.preventDefault();
+            var server;
+            if ($(this).attr('data-server')) {
+                server = $(this).attr('data-server');
+            }
+            else if ($(this).attr('data-link-server')) {
+                server = $(this).attr('data-link-server');
+            }
+            else if ($(this).parents('[data-link-server]').length) {
+                server = $(this).parents('[data-link-server]').attr('data-link-server');
+            }
+            else if ($(this).parents('[data-server]').length) {
+                server = $(this).parents('[data-server]').attr('data-server');
+            }
+            if (server) {
+                dbManager.switchServer(server);
+            }
+            return false;
         });
 
     };

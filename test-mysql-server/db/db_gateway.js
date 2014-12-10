@@ -3,19 +3,16 @@
  * @returns {{connect: Function, disconnect: Function, insert: Function, remove: Function, select: Function}}
  */
 module.exports = function(){
-    var pg = require('pg');
     var config = (registry.get ("config"));
-
-    var conString = "postgres://" + config.db.user + ":" + config.db.password + "@localhost/" + config.db.dbname;
-
-    var client = new pg.Client(conString);
-    client.connect(function(err) {
-      if(err) {
-        return console.error('could not connect to postgres', err);
-      }
+    var MySQLPool = registry.get ("mysqlPool").MySQLPool;
+    var client = new MySQLPool({
+        poolSize: config.db.poolSize,
+        user:     config.db.user,
+        password: config.db.password,
+        database: config.db.dbName,
+        host: config.db.host,
+        supportBigNumbers : true
     });
-
-    client.escape = function (val) { return val; };
 
     /**
     * Slashes arguments to use in MySQL DB queries
@@ -37,19 +34,7 @@ module.exports = function(){
         var result = '';
         var key;
         for (key in obj) {
-            result += '"' + key + '"= ' + client.escape(obj[key]) + ', ';
-        }
-        if (result.length>0){
-            result = result.substr(0, result.length - 2);
-        }
-        return result;
-    };
-
-    var getUpdateValExpr = function(obj){
-        var result = '';
-        var key;
-        for (key in obj) {
-            result += '' + key + "='" + client.escape(obj[key]) + "', ";
+            result += '`' + key + '`= ' + client.escape(obj[key]) + ', ';
         }
         if (result.length>0){
             result = result.substr(0, result.length - 2);
@@ -61,27 +46,11 @@ module.exports = function(){
         var result = '';
         var key;
         for (key in obj) {
-            result += '"' + key + '"= ' + client.escape(obj[key]) + ' AND ';
+            result += '`' + key + '`= ' + client.escape(obj[key]) + ' AND ';
         }
         if (result.length>0){
             result = result.substr(0, result.length - 5);
         }
-        return result;
-    };
-
-    var getInsertExpr = function(obj){
-        var result = '(';
-        var key;
-        var keys = [];
-        for (key in obj) {
-            keys.push(key);
-            result += key + ',';
-        }
-        result = result.substr(0, result.length - 1) + ") VALUES (";
-        for (var i = 0; i < keys.length; i++) {
-            result += "'" + obj[keys[i]] + "',";
-        }
-        result = result.substr(0, result.length - 1) + ") ";
         return result;
     };
 
@@ -117,7 +86,7 @@ module.exports = function(){
          */
         'insertIgnore': function (table, obj, cb) {
             cb = cb || function () {};
-            var query = 'INSERT IGNORE INTO "' + table + '"' + getInsertExpr(obj);
+            var query = 'INSERT IGNORE INTO `' + table + '` SET ' + getKeyValExpr(obj);
             executeQuery(query, function (result, fields) { cb(result.affectedRows); });
         },
 
@@ -126,7 +95,30 @@ module.exports = function(){
          */
         'insert': function (table, obj, cb) {
             cb = cb || function () {};
-            var query = 'INSERT INTO "' + table + '"' + getInsertExpr(obj);
+            var query = 'INSERT INTO `' + table + '` SET ' + getKeyValExpr(obj);
+            executeQuery(query, function (result, fields){ cb(result); });
+        },
+
+        /**
+         * Inserts multiple records in one query
+         * obj in format: [{key1: val, key2: val }, {key1: val, key2: val }, ...]
+         */
+        'insertAll': function (table, obj, cb) {
+            cb = cb || function () {};
+            var query = 'INSERT INTO `' + table + '` VALUES';
+            var i=0;
+            for(; i < obj.length; i++){
+                query += " (";
+                for (key in obj[i]) {
+                    query +=  client.escape(obj[i][key]) + ', ';
+                }
+                query = query.substr(0, query.length - 2);
+                query += "),";
+            }
+
+            if(i > 0){
+                query = query.substr(0, query.length - 1);
+            }
             executeQuery(query, function (result, fields){ cb(result); });
         },
 
@@ -136,7 +128,7 @@ module.exports = function(){
          */
         'insertUpdate': function (table, obj, cb) {
             cb = cb || function () {};
-            var query = 'INSERT INTO "' + table + '"' + getInsertExpr(obj) + ' ON DUPLICATE KEY UPDATE ' + getKeyValExpr(obj);
+            var query = 'INSERT INTO `' + table + '` SET ' + getKeyValExpr(obj) + ' ON DUPLICATE KEY UPDATE ' + getKeyValExpr(obj);
             executeQuery(query, function (result, fields){ cb(result); });
         },
 
@@ -145,7 +137,7 @@ module.exports = function(){
          */
         'remove': function (table, condition, cb) {
             cb = cb || function () {};
-            var query = 'DELETE FROM "' + table + '" WHERE ' + getKeyValExpr(condition);
+            var query = 'DELETE FROM `' + table + '` WHERE ' + getKeyValExpr(condition);
             executeQuery(query, function (result, fields) { cb(); } );
         },
 
@@ -154,7 +146,7 @@ module.exports = function(){
           */
         'update': function (table, fieldVals, condition, cb) {
             cb = cb || function () {};
-            var query = 'UPDATE "' + table + '" SET ' + getUpdateValExpr(fieldVals) + ' WHERE ' + getKeyValExpr(condition);
+            var query = 'UPDATE `' + table + '` SET ' + getKeyValExpr(fieldVals) + ' WHERE ' + getKeyValExpr(condition);
             executeQuery(query, function(result, fields){ cb(result) });
         },
 
@@ -163,9 +155,9 @@ module.exports = function(){
          */
         'select': function (table, condition, cb) {
             cb = cb || function () {};
-            var query = 'SELECT * FROM "' + table + '"';
+            var query = 'SELECT * FROM `' + table + '`';
             if(condition)query = query +' WHERE ' + getKeyValExprAnd(condition);
-            executeQuery(query, function(result, fields){cb(result.rows);});
+            executeQuery(query, function(result, fields){cb(result);});
         },
 
         /**
@@ -173,10 +165,10 @@ module.exports = function(){
          */
         'selectFirst' : function(table, condition, cb){
             cb = cb || function () {};
-            var query = 'SELECT * FROM "' + table + '"';
+            var query = 'SELECT * FROM `' + table + '`';
             if(condition)query = query +' WHERE ' + getKeyValExprAnd(condition) + ' LIMIT 1;';
             executeQuery(query, function(result, fields){
-                var res = result.rows.length > 0 ? result.rows[0] : false;
+                var res = result.length > 0 ? result[0] : false;
                 cb(res);
             });
         }
@@ -186,8 +178,8 @@ module.exports = function(){
          */
         , 'selectAll': function (table, cb) {
             cb = cb || function () {};
-            var query = 'SELECT * FROM "' + table + '"';
-            executeQuery(query, function(result, fields){cb(result.rows);});
+            var query = 'SELECT * FROM `' + table + '`';
+            executeQuery(query, function(result, fields){cb(result);});
         },
 
         'updateIncrements' : function (cb) {
@@ -307,7 +299,7 @@ module.exports = function(){
 
             var table = 'uobject';
             var query =
-                "DELETE FROM \"" + table + "\" WHERE " +
+                "DELETE FROM `" + table + "` WHERE " +
                 "id=" + recordId + " OR major=" + recordId;
 
             gateway.execute (query, cb);

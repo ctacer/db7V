@@ -4,7 +4,7 @@ var treeViewController = ( function () {
 
     var config ;
     var classes = {};
-    var uObjects = [];
+    var uObjects = {};
 
     var init = function (__config) {
         config = __config;
@@ -14,10 +14,10 @@ var treeViewController = ( function () {
 
     var loadData = function () {
         helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getObjects), objectsReceived('server1') );
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getClasses), classesReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getClasses), classesReceived('server1') );
 
         helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getObjects), objectsReceived('server2') );
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getClasses), classesReceived );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getClasses), classesReceived('server2') );
     };
 
     var rerfeshObjects = function () {
@@ -27,8 +27,7 @@ var treeViewController = ( function () {
 
     var objectsReceived = function (server) {
         return function (objects) {
-            uObjects = objects;
-            console.log (uObjects);
+            uObjects[server] = objects;
             templateBuilder.buildTreeView (objects, { server: server });
             intiUI ();
         };
@@ -40,14 +39,17 @@ var treeViewController = ( function () {
      */
     var replaceIdsWithClassNames = function () {
         var child;
-        for ( var id in classes ) {
-            for (var j = 0; j < classes[id].children.length; j ++) {
-                child = classes[id].children[j];
-                if ( classes[child] ) {
-                    classes[id].children[j] = {
-                        "id" : child,
-                        "name" : classes[child].name
-                    };
+        var activeServer = dbManager.getServer();
+        for (var server in classes) {
+            for ( var id in classes[server] ) {
+                for (var j = 0; j < classes[server][id].children.length; j ++) {
+                    child = classes[server][id].children[j];
+                    if ( classes[server][child] ) {
+                        classes[server][id].children[j] = {
+                            "id" : child,
+                            "name" : classes[server][child].name
+                        };
+                    }
                 }
             }
         }
@@ -57,25 +59,28 @@ var treeViewController = ( function () {
      * function callback , will be called when all classes are loaded from server
      * @param responseClasses
      */
-    var classesReceived = function (responseClasses) {
-        console.log(responseClasses);
-        var classesMappings = config.serverData.classes;
-        var key, children;
-        for (var i = 0; i < responseClasses.length; i ++ ) {
-            key = responseClasses[i][classesMappings.id];
-            children = responseClasses[i][classesMappings.children];
-            if ( !children ) children = "";
+    var classesReceived = function (server) {
+        return function (responseClasses) {
+            console.log(responseClasses);
+            var classesMappings = config.serverData.classes;
+            var key, children;
+            classes[server] = {};
+            for (var i = 0; i < responseClasses.length; i ++ ) {
+                key = responseClasses[i][classesMappings.id];
+                children = responseClasses[i][classesMappings.children];
+                if ( !children ) children = "";
 
-            children = children.split (/\s+/);
-            classes[key] = {
-                "id" : key,
-                "name" : responseClasses[i][classesMappings.name],
-                "children" : children
-            };
-        }
+                children = children.split (/\s+/);
+                classes[server][key] = {
+                    "id" : key,
+                    "name" : responseClasses[i][classesMappings.name],
+                    "children" : children
+                };
+            }
 
-        replaceIdsWithClassNames ();
-        dbManager.setClasses (classes);
+            replaceIdsWithClassNames ();
+            dbManager.setClasses (classes[server], server);
+        };
     };
 
     var intiUI = function () {
@@ -104,20 +109,30 @@ var treeViewController = ( function () {
 
     var getObjectsById = function (conditionId) {
         var returnObjects = [];
-        if ( !conditionId ) return uObjects;
+        var activeServer = dbManager.getServer();
+        if ( !conditionId ) return uObjects[activeServer];
 
-        for (var i = 0; i < uObjects.length; i ++) {
-            if ( uObjects[i].id == conditionId ) {
-                returnObjects.push (uObjects[i]);
+
+        for (var i = 0; i < uObjects[activeServer].length; i ++) {
+            if ( uObjects[activeServer][i].id == conditionId ) {
+                returnObjects.push (uObjects[activeServer][i]);
             }
         }
         return returnObjects;
+    };
+
+    var uploadNewServer = function (link) {
+        config.server.locations[link] = { host: link, label: link };
+        // config.css[link] = link;
+        helper.ajax.get ( helper.ajax.buildUrl(link, config.server.routes.getObjects), objectsReceived(link) );
+        helper.ajax.get ( helper.ajax.buildUrl(link, config.server.routes.getClasses), classesReceived(link) );
     };
 
     return {
         "initialize" : init,
         "getObjectsById" : getObjectsById,
         "rerfeshObjects" : rerfeshObjects,
-        "setTriggerHandlers" : setTriggerHandlers
+        "setTriggerHandlers" : setTriggerHandlers,
+        "uploadNewServer" : uploadNewServer
     }
 } ) ();

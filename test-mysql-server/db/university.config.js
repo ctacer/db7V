@@ -53,8 +53,7 @@ var config = {
         "territory" : "territory",
         "transport" : "transport",
         "universities" : "universities",
-        "uobject" : "uobject",
-        "link": "link"
+        "uobject" : "uobject"
     },
     "dbMappings" : {
 

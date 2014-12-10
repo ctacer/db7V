@@ -158,6 +158,7 @@ var config = {
         "accredetation" : "Акредитація",
         "major" : "Головний",
         "name" : "Ім'я",
-        "class" : "Тип"
+        "class" : "Тип",
+        "url": "лінк на сервер"
     }
 };

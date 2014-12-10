@@ -52,6 +52,7 @@
     };
 
     ajax.buildUrl = function (local, route) {
+        if (typeof local == 'string') return local + route;
         return local.host + route;
     };
 

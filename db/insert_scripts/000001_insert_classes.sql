@@ -26,7 +26,7 @@ INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 25,  'cathedr
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 26,  'buildingsother', '1 27 2 4 6 7 9 10 11 22 30 12 13 14 17 18 20 28 23 24 35 36');
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 27,  'classroom', '2 7 22 30 12 13 17 18 23 24 35 36');
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 28,  'transport', '35 36');
-INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 29,  'universities', '1 27 2 4 5 6 7 8 10 26 11 22 30 12 13 14 15 16 17 18 19 20 21 28 23 24 33');
+INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 29,  'universities', '1 27 2 4 5 6 7 8 10 26 11 22 30 12 13 14 15 16 17 18 19 20 21 28 23 24 33 37');
 INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 30, 'nomaterialobjother');
 INSERT INTO `university2.0.`.classes (ID, Name, Children) VALUES ( 31, 'eventtest', '1 4 6 7 9 10 22 30 12 13 14 20 28 23');
 INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 32, 'obj');
@@ -34,3 +34,4 @@ INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 33, 'documentgeneral');
 INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 34, 'process');
 INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 35, 'remont');
 INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 36, 'painting');
+INSERT INTO `university2.0.`.classes (ID, Name) VALUES ( 37, 'link');
