@@ -67,7 +67,7 @@ var templateBuilder = (function () {
 
         var currentAppendy = $ ('#' + config.css[opts.server]);
         if (currentAppendy.length == 0) {
-            currentAppendy = $('[data-link-server="' + opts.server + '"]').find('.collapsable-child');
+            currentAppendy = $('[data-link-server="' + opts.server + '"]');
         }
         currentAppendy.attr('data-server', opts.server);
         currentAppendy.empty ();
@@ -76,7 +76,7 @@ var templateBuilder = (function () {
         for (var i = 0; i < objects.length; i ++) {
             objectElement = jQuery (template);
             if (objects[i].class == 37) {
-                objectElement.attr('data-link-server', objects[i].name);
+                objectElement.find('.collapsable-child').attr('data-link-server', objects[i].name);
             }
             currentMajor = objects[i][uObjectMappings.major];
             if ( currentMajor == preventMajor ) {

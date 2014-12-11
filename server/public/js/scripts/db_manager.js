@@ -235,16 +235,19 @@ var dbManager = ( function () {
             .on ('click', buttonClicked);
     };
 
-    var openDeleteFrom = function (objects) {
+    var openDeleteFrom = function (objects, parentServer) {
         console.log ("Deleting the", objects[0]);
         $ ('.' + config.css.dbManagmentHeader).addClass (config.css.hidden);
-        var objectClass = classes[activeServer][objects[0].class].name;
-        if (!objectClass) return;
-
 
         var className = classes[activeServer][objects[0].class];
+        if (!className) {
+            className = classes[parentServer][objects[0].class]
+        }
         if (className) {
             className = className.name;
+        }
+        else {
+            return;
         }
         templateBuilder.buildDeleteForm (objects[0]);
         setDeleteObjectEvent ({ 'class' : objects[0].class, 'className' : className, 'id' : objects[0].id });

@@ -107,7 +107,7 @@ var treeViewController = ( function () {
         treeNodes.click (treeViewClicked);
     };
 
-    var getObjectsById = function (conditionId) {
+    var getObjectsById = function (conditionId, parentServer) {
         var returnObjects = [];
         var activeServer = dbManager.getServer();
         if ( !conditionId ) return uObjects[activeServer];
@@ -116,6 +116,14 @@ var treeViewController = ( function () {
         for (var i = 0; i < uObjects[activeServer].length; i ++) {
             if ( uObjects[activeServer][i].id == conditionId ) {
                 returnObjects.push (uObjects[activeServer][i]);
+            }
+        }
+        
+        if (!returnObjects.length && parentServer) {
+            for (var i = 0; i < uObjects[parentServer].length; i ++) {
+                if ( uObjects[parentServer][i].id == conditionId ) {
+                    returnObjects.push (uObjects[parentServer][i]);
+                }
             }
         }
         return returnObjects;

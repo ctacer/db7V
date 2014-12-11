@@ -59,7 +59,8 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openEditFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ));
+            dbManager.openEditFrom (
+                treeViewController.getObjectsById ( $(selectedTreeNode[0]).attr("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') );
         };
         $ ("#" + config.css.editEntryBtn).click (editButtonClicked);
     };
@@ -70,7 +71,7 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openInfoFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ));
+            dbManager.openInfoFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server'));
         };
         $ ("#" + config.css.infoEntryBtn).click (infoButtonClicked);
     };
@@ -81,7 +82,7 @@ var mainController = ( function () {
             if ( !selectedTreeNode.length ) return;
 
             $ ("#" + config.css.rightContainer ).addClass (config.css.visible);
-            dbManager.openDeleteFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ));
+            dbManager.openDeleteFrom (treeViewController.getObjectsById ( $ (selectedTreeNode[0] ).attr ("data-id"), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server') ), $(selectedTreeNode[0]).parents('[data-server]').attr('data-server'));
         };
         $ ("#" + config.css.deleteEntryBtn).click (deleteButtonClicked);
     };

@@ -18,6 +18,129 @@ COLLATE utf8_general_ci;
 USE `university2.0.`;
 
 --
+-- Definition for table classes
+--
+CREATE TABLE classes (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  Name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  Children mediumtext DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB
+AUTO_INCREMENT = 1
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table classes_func
+--
+CREATE TABLE classes_func (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  Name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  Children mediumtext DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB
+AUTO_INCREMENT = 1
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table painting
+--
+CREATE TABLE painting (
+  id int(11) NOT NULL DEFAULT 0,
+  brush varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table process
+--
+CREATE TABLE process (
+  id int(11) NOT NULL DEFAULT 0,
+  start varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  end varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  person_vyk varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table remont
+--
+CREATE TABLE remont (
+  id int(11) NOT NULL DEFAULT 0,
+  materials mediumtext DEFAULT NULL,
+  suma int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table uobject
+--
+CREATE TABLE uobject (
+  id int(11) NOT NULL DEFAULT 0,
+  major int(11) DEFAULT NULL,
+  name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  class int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table institution
+--
+CREATE TABLE institution (
+  id int(11) NOT NULL DEFAULT 0,
+  adress varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT UObjectInstitution FOREIGN KEY (id)
+  REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table institutionorg
+--
+CREATE TABLE institutionorg (
+  id int(11) NOT NULL DEFAULT 0,
+  chief varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT InstitutionInstitutionOrg FOREIGN KEY (id)
+  REFERENCES institution (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table institutionother
+--
+CREATE TABLE institutionother (
+  id int(11) NOT NULL DEFAULT 0,
+  `desc` mediumtext DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT InstitutionOrgInstitutionOther FOREIGN KEY (id)
+  REFERENCES institutionorg (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
 -- Definition for table `group`
 --
 CREATE TABLE `group` (
@@ -91,34 +214,6 @@ CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
 --
--- Definition for table classes
---
-CREATE TABLE classes (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  Name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  Children mediumtext DEFAULT NULL,
-  PRIMARY KEY (id)
-)
-ENGINE = INNODB
-AUTO_INCREMENT = 1
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table classes_func
---
-CREATE TABLE classes_func (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  Name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  Children mediumtext DEFAULT NULL,
-  PRIMARY KEY (id)
-)
-ENGINE = INNODB
-AUTO_INCREMENT = 1
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
 -- Definition for table classroom
 --
 CREATE TABLE classroom (
@@ -171,6 +266,91 @@ CREATE TABLE deanery (
   PRIMARY KEY (id),
   CONSTRAINT InstitutionOrgDeanery FOREIGN KEY (id)
   REFERENCES institutionorg (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table obj
+--
+CREATE TABLE obj (
+  id int(11) NOT NULL DEFAULT 0,
+  responsible_person varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT UObjectObj FOREIGN KEY (id)
+  REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table events
+--
+CREATE TABLE events (
+  id int(11) NOT NULL DEFAULT 0,
+  date_action varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  place_action varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT ObjEvents FOREIGN KEY (id)
+  REFERENCES obj (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table other
+--
+CREATE TABLE other (
+  id int(11) NOT NULL DEFAULT 0,
+  `desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT UObjectOther FOREIGN KEY (id)
+  REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table materialobject
+--
+CREATE TABLE materialobject (
+  id int(11) NOT NULL DEFAULT 0,
+  date_creation varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT ObjMaterialObject FOREIGN KEY (id)
+  REFERENCES obj (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table nomaterialobjother
+--
+CREATE TABLE nomaterialobjother (
+  id int(11) NOT NULL DEFAULT 0,
+  `desc` mediumtext DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT ObjNoMaterialObjOther FOREIGN KEY (id)
+  REFERENCES obj (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table othermaterialobject
+--
+CREATE TABLE othermaterialobject (
+  id int(11) NOT NULL DEFAULT 0,
+  `desc` mediumtext DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT MaterialObjectOtherMaterialObject FOREIGN KEY (id)
+  REFERENCES materialobject (id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 ENGINE = INNODB
 CHARACTER SET utf8
@@ -261,21 +441,6 @@ CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
 --
--- Definition for table events
---
-CREATE TABLE events (
-  id int(11) NOT NULL DEFAULT 0,
-  date_action varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  place_action varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT ObjEvents FOREIGN KEY (id)
-  REFERENCES obj (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
 -- Definition for table eventscience
 --
 CREATE TABLE eventscience (
@@ -349,130 +514,6 @@ CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
 --
--- Definition for table institution
---
-CREATE TABLE institution (
-  id int(11) NOT NULL DEFAULT 0,
-  adress varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT UObjectInstitution FOREIGN KEY (id)
-  REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table institutionorg
---
-CREATE TABLE institutionorg (
-  id int(11) NOT NULL DEFAULT 0,
-  chief varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT InstitutionInstitutionOrg FOREIGN KEY (id)
-  REFERENCES institution (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table institutionother
---
-CREATE TABLE institutionother (
-  id int(11) NOT NULL DEFAULT 0,
-  `desc` mediumtext DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT InstitutionOrgInstitutionOther FOREIGN KEY (id)
-  REFERENCES institutionorg (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table materialobject
---
-CREATE TABLE materialobject (
-  id int(11) NOT NULL DEFAULT 0,
-  date_creation varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT ObjMaterialObject FOREIGN KEY (id)
-  REFERENCES obj (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table nomaterialobjother
---
-CREATE TABLE nomaterialobjother (
-  id int(11) NOT NULL DEFAULT 0,
-  `desc` mediumtext DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT ObjNoMaterialObjOther FOREIGN KEY (id)
-  REFERENCES obj (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table obj
---
-CREATE TABLE obj (
-  id int(11) NOT NULL DEFAULT 0,
-  responsible_person varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT UObjectObj FOREIGN KEY (id)
-  REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table other
---
-CREATE TABLE other (
-  id int(11) NOT NULL DEFAULT 0,
-  `desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT UObjectOther FOREIGN KEY (id)
-  REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table othermaterialobject
---
-CREATE TABLE othermaterialobject (
-  id int(11) NOT NULL DEFAULT 0,
-  `desc` mediumtext DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT MaterialObjectOtherMaterialObject FOREIGN KEY (id)
-  REFERENCES materialobject (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table painting
---
-CREATE TABLE painting (
-  id int(11) NOT NULL DEFAULT 0,
-  brush varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id)
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
 -- Definition for table person
 --
 CREATE TABLE person (
@@ -482,6 +523,106 @@ CREATE TABLE person (
   PRIMARY KEY (id),
   CONSTRAINT UObjectPerson FOREIGN KEY (id)
   REFERENCES uobject (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table personother
+--
+CREATE TABLE personother (
+  id int(11) NOT NULL DEFAULT 0,
+  benefit mediumtext DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT PersonPersonOther FOREIGN KEY (id)
+  REFERENCES person (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table personstuding
+--
+CREATE TABLE personstuding (
+  id int(11) NOT NULL DEFAULT 0,
+  secondary_education varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT PersonPersonStuding FOREIGN KEY (id)
+  REFERENCES person (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table personstudents
+--
+CREATE TABLE personstudents (
+  id int(11) NOT NULL DEFAULT 0,
+  studing_form varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  entry_year int(11) DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT PersonStudingPersonStudents FOREIGN KEY (id)
+  REFERENCES personstuding (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table personworking
+--
+CREATE TABLE personworking (
+  id int(11) NOT NULL DEFAULT 0,
+  experience varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  salary varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT PersonPersonWorking FOREIGN KEY (id)
+  REFERENCES person (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+--
+-- Definition for table personteaching
+--
+CREATE TABLE personteaching (
+  id int(11) NOT NULL DEFAULT 0,
+  subject mediumtext DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT PersonWorkingPersonTeaching FOREIGN KEY (id)
+  REFERENCES personworking (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+
+
+--
+-- Definition for table personteachers
+--
+CREATE TABLE personteachers (
+  id int(11) NOT NULL DEFAULT 0,
+  academic_degree varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT PersonTeachingPersonTeachers FOREIGN KEY (id)
+  REFERENCES personteaching (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_unicode_ci;
+--
+-- Definition for table personworkers
+--
+CREATE TABLE personworkers (
+  id int(11) NOT NULL DEFAULT 0,
+  post varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT PersonWorkingPersonWorkers FOREIGN KEY (id)
+  REFERENCES personworking (id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 ENGINE = INNODB
 CHARACTER SET utf8
@@ -516,120 +657,6 @@ CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
 --
--- Definition for table personother
---
-CREATE TABLE personother (
-  id int(11) NOT NULL DEFAULT 0,
-  benefit mediumtext DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT PersonPersonOther FOREIGN KEY (id)
-  REFERENCES person (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table personstudents
---
-CREATE TABLE personstudents (
-  id int(11) NOT NULL DEFAULT 0,
-  studing_form varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  entry_year int(11) DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT PersonStudingPersonStudents FOREIGN KEY (id)
-  REFERENCES personstuding (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table personstuding
---
-CREATE TABLE personstuding (
-  id int(11) NOT NULL DEFAULT 0,
-  secondary_education varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT PersonPersonStuding FOREIGN KEY (id)
-  REFERENCES person (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table personteachers
---
-CREATE TABLE personteachers (
-  id int(11) NOT NULL DEFAULT 0,
-  academic_degree varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT PersonTeachingPersonTeachers FOREIGN KEY (id)
-  REFERENCES personteaching (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table personteaching
---
-CREATE TABLE personteaching (
-  id int(11) NOT NULL DEFAULT 0,
-  subject mediumtext DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT PersonWorkingPersonTeaching FOREIGN KEY (id)
-  REFERENCES personworking (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table personworkers
---
-CREATE TABLE personworkers (
-  id int(11) NOT NULL DEFAULT 0,
-  post varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT PersonWorkingPersonWorkers FOREIGN KEY (id)
-  REFERENCES personworking (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table personworking
---
-CREATE TABLE personworking (
-  id int(11) NOT NULL DEFAULT 0,
-  experience varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  salary varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT PersonPersonWorking FOREIGN KEY (id)
-  REFERENCES person (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table process
---
-CREATE TABLE process (
-  id int(11) NOT NULL DEFAULT 0,
-  start varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  end varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  person_vyk varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (id)
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
 -- Definition for table rectorat
 --
 CREATE TABLE rectorat (
@@ -638,19 +665,6 @@ CREATE TABLE rectorat (
   PRIMARY KEY (id),
   CONSTRAINT InstitutionOrgRectorat FOREIGN KEY (id)
   REFERENCES institutionorg (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
--- Definition for table remont
---
-CREATE TABLE remont (
-  id int(11) NOT NULL DEFAULT 0,
-  materials mediumtext DEFAULT NULL,
-  suma int(11) DEFAULT NULL,
-  PRIMARY KEY (id)
 )
 ENGINE = INNODB
 CHARACTER SET utf8
@@ -715,20 +729,6 @@ CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
 --
--- Definition for table uobject
---
-CREATE TABLE uobject (
-  id int(11) NOT NULL DEFAULT 0,
-  major int(11) DEFAULT NULL,
-  name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  class int(11) DEFAULT NULL,
-  PRIMARY KEY (id)
-)
-ENGINE = INNODB
-CHARACTER SET utf8
-COLLATE utf8_unicode_ci;
-
---
 -- Definition for table link
 --
 CREATE TABLE link (
@@ -742,7 +742,7 @@ ENGINE = INNODB
 CHARACTER SET utf8
 COLLATE utf8_unicode_ci;
 
-CREATE TABLE `university2.0.`.uincrements (
+CREATE TABLE uincrements (
   id int NOT NULL DEFAULT 1,
   uobject_last_id int NOT NULL DEFAULT 1
 )
