@@ -122,7 +122,11 @@ module.exports = {
         },
         "personstudents" : {
             "studing_form" : "String",
-            "entry_year" : "String"
+            "entry_year" : "String",
+            "father_adress": "String",
+            "mother_adress": "String",
+            "father_name": "String",
+            "mother_name": "String"
         },
         "personstuding" : {
             "secondary_education" : "String"

@@ -66,10 +66,15 @@ var templateBuilder = (function () {
         sortObjects (objects);
 
         var currentAppendy = $ ('#' + config.css[opts.server]);
+        var allClasses = dbManager.getClasses();
+        var objectClasses = allClasses[dbManager.getServer()][objects[0].class].name;
         if (currentAppendy.length == 0) {
             currentAppendy = $('[data-link-server="' + opts.server + '"]');
         }
-        currentAppendy.attr('data-server', opts.server);
+        currentAppendy
+            .attr('data-server', opts.server)
+            .addClass(objectClasses);
+        
         currentAppendy.empty ();
         var currentMajor, preventMajor = 0;
 
@@ -185,8 +190,8 @@ var templateBuilder = (function () {
                 if ( !label ) label = key;
 
                 field =
-                    "<div class=\"" + config.css.fieldContainer + "\" data-table=\"" + tables[i].name + "\">" +
-                        "<div class=\"" + config.css.fieldLabel + " " + config.css.floatLeft + "\">" + label + "</div>" +
+                    "<div class=\"" + config.css.fieldContainer + " " + key + "\" data-table=\"" + tables[i].name + "\">" +
+                        "<div class=\"" + config.css.fieldLabel+ " " + config.css.floatLeft + "\">" + label + "</div>" +
                         editableField +
                         browseBtn +
                         "<div class=\"" + config.css.floatClear + "\"></div>" +

@@ -13,11 +13,18 @@ var treeViewController = ( function () {
     };
 
     var loadData = function () {
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getObjects), objectsReceived('server1') );
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getClasses), classesReceived('server1') );
+        // helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getObjects), objectsReceived('server1') );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getClasses), function (classes) {
+            classesReceived('server1') (classes);
+            helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getObjects), objectsReceived('server1') );
+        });
 
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getObjects), objectsReceived('server2') );
-        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getClasses), classesReceived('server2') );
+        // helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getObjects), objectsReceived('server2') );
+        // helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getClasses), classesReceived('server2') );
+        helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server2, config.server.routes.getClasses), function (classes) {
+            classesReceived('server2') (classes);
+            helper.ajax.get ( helper.ajax.buildUrl(config.server.locations.server1, config.server.routes.getObjects), objectsReceived('server2') );
+        });
     };
 
     var rerfeshObjects = function () {

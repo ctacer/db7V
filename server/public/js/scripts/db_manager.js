@@ -277,6 +277,10 @@ var dbManager = ( function () {
         return activeServer;
     };
 
+    var getClasses = function () {
+        return classes;
+    };
+
     return {
         "initialize" : init,
         "setClasses" : setClasses,
@@ -285,7 +289,8 @@ var dbManager = ( function () {
         "openInfoFrom" : openInfoFrom,
         "openDeleteFrom" : openDeleteFrom,
         "switchServer": switchServer,
-        "getServer": getServer
+        "getServer": getServer,
+        "getClasses": getClasses
     };
 
 } ) ();

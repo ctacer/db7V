@@ -89,3 +89,21 @@ footer's styles
     border-bottom-width: 1px;
     border-top-width: 1px;
 }
+
+.db-managment-field-container[data-table="personstudents"].father_adress,
+.db-managment-field-container[data-table="personstudents"].mother_adress,
+.db-managment-field-container[data-table="personstudents"].father_name,
+.db-managment-field-container[data-table="personstudents"].mother_name
+ {
+    width: 50%;
+    display: inline-block;
+    margin: 10px 0px;
+}
+
+.db-managment-field-container[data-table="personstudents"].father_adress .db-managment-field-element,
+.db-managment-field-container[data-table="personstudents"].mother_adress .db-managment-field-element,
+.db-managment-field-container[data-table="personstudents"].father_name .db-managment-field-element,
+.db-managment-field-container[data-table="personstudents"].mother_name .db-managment-field-element
+{
+    padding: 5px;
+}

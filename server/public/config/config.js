@@ -159,6 +159,10 @@ var config = {
         "major" : "Головний",
         "name" : "Ім'я",
         "class" : "Тип",
-        "url": "лінк на сервер"
+        "url": "лінк на сервер",
+        "father_adress": "Адреса батька",
+        "mother_adress": "Адреса матері",
+        "father_name": "Ім'я батька",
+        "mother_name": "Ім'я матері"
     }
 };
